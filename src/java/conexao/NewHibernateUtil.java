@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.application;
+package conexao;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
 /**
+ * Hibernate Utility class with a convenient method to get Session Factory
+ * object.
  *
- * @author leonardo
+ * @author 2016122760112
  */
-public class ConexaoHibernate {
+public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
-
+    
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
@@ -27,9 +29,8 @@ public class ConexaoHibernate {
             throw new ExceptionInInitializerError(ex);
         }
     }
-
+    
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
 }

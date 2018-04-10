@@ -11,10 +11,10 @@ import javax.persistence.Id;
 public class Ator implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // AUTONUMERAÇÃO    
+    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO    
     private int id;
     
-    @Column(length=45) 
+    //@Column(length=45) 
     private String nome;
 
     //com id    

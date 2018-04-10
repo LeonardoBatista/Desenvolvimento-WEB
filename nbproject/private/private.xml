@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/2016122760112/Documents/NetBeansProjects/Teste/web/index.html</file>
-            <file>file:/C:/Users/2016122760112/Documents/NetBeansProjects/Teste/src/conf/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/2016122760112/Documents/NetBeansProjects/Locadora/Desenvolvimento-WEB/src/java/controller/CtrlCadastrarAtor.java</file>
+            <file>file:/C:/Users/2016122760112/Documents/NetBeansProjects/Locadora/Desenvolvimento-WEB/web/administrador/formCadastrarAtor.html</file>
+            <file>file:/C:/Users/2016122760112/Documents/NetBeansProjects/Locadora/Desenvolvimento-WEB/src/java/model/application/AplCadastrarAtor.java</file>
         </group>
     </open-files>
 </project-private>

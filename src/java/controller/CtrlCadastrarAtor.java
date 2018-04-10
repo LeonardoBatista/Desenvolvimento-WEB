@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarAtor"})
 public class CtrlCadastrarAtor extends HttpServlet {
-    
+
     AplCadastrarAtor ator = new AplCadastrarAtor();
 
     /**
@@ -27,21 +27,12 @@ public class CtrlCadastrarAtor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-        //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
+
+            //Inicia Controladora           
             
+            ator.incluirAtor(request.getParameter("nomeAtor"));
 
-        switch (operacao) {
-            case "inserirAtor":
-                 ator.incluirAtor("nome");
-                 break;
-            default:
-                break;
-        }
-
-
-        if(operacao.equals("incluirAtor")){
+            /*        if(operacao.equals("incluirAtor")){
             
             String nome = request.getParameter("nome");
 
@@ -55,7 +46,7 @@ public class CtrlCadastrarAtor extends HttpServlet {
             }
         }
         //Fecha Controladora
-            
+             */
         }
     }
 
@@ -98,8 +89,4 @@ public class CtrlCadastrarAtor extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
- 
-    
-    
 }
