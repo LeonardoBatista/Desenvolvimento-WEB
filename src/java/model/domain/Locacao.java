@@ -1,16 +1,28 @@
 package model.domain;
 
+import java.io.Serializable;
 import java.util.Date;
-import model.domain.Item;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Locacao {
+@Entity
+public class Locacao implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
     private int id;
 
+    @Temporal(TemporalType.DATE)
     private Date dtDevolucao;
 
+    @Temporal(TemporalType.DATE)
     private Date dtDevolucaoPrevista;
 
+    @Temporal(TemporalType.DATE)
     private Date dtDevolucaoEfetiva;
 
     private float valorCobrado;

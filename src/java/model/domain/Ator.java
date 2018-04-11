@@ -1,7 +1,6 @@
 package model.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +13,6 @@ public class Ator implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO    
     private int id;
     
-    //@Column(length=45) 
     private String nome;
 
     //com id    
