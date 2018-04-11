@@ -182,10 +182,9 @@
                                 <tr>
                                     <th class='col-xs-1'>Nome</th>
                                     <th class='col-xs-1'>Ações</th>
-                                </tr>
-
-                                <%
-                                    List Atores;
+                                </tr> 
+                  <%
+ /*                                   List Atores;
 
                                     out.println("<table>");
                                     out.println("<tr>");
@@ -199,7 +198,7 @@
                                     }
 
                                     out.println("</table>");
-
+*/
                                 %>
 
 

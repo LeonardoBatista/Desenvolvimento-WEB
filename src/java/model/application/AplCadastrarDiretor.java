@@ -1,28 +1,24 @@
 package model.application;
 
 import model.domain.Diretor;
+import org.hibernate.Session;
 
 public class AplCadastrarDiretor {
    
-    public int incluirDiretor(String nome){
-        
-        Diretor diretor = new Diretor();   
-        diretor.setNome(nome);
- 
+    public int incluirDiretor(String nome) {
 
+        Diretor diretor = new Diretor(nome);
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+
+        sessao.beginTransaction();
+
+        sessao.save(diretor);
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
         return 0;
-
-    }  
+    } 
      
 }

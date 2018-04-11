@@ -3,7 +3,6 @@ package controller;
 import model.application.AplCadastrarDiretor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,32 +28,7 @@ public class CtrlCadastrarDiretor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
-        //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
-            
-
-        switch (operacao) {
-            case "inserirDiretor":
-                 diretor.incluirDiretor(operacao);
-                 break;
-            default:
-                break;
-        }
-
-
-        if(operacao.equals("incluirDiretor")){
-            String nome = request.getParameter("nome");        
-
-            int ret = diretor.incluirDiretor(nome);
-
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
-            }
-        }
-        //Fecha Controladora
+        diretor.incluirDiretor(request.getParameter("nomeDiretor"));
             
         }
     }

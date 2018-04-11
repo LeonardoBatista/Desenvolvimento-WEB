@@ -48,5 +48,10 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <mapping class="model.domain.Ator"/>
+    <mapping class="model.domain.Classe"/>
+    <mapping class="model.domain.Cliente"/>
+    <mapping class="model.domain.Diretor"/>
+    <mapping class="model.domain.Item"/>
+    <mapping class="model.domain.Titulo"/>
   </session-factory>
 </hibernate-configuration>
