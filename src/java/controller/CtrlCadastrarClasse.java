@@ -3,7 +3,6 @@ package controller;
 import model.application.AplCadastrarClasse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,34 +29,17 @@ public class CtrlCadastrarClasse extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            
         //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
-            
-
-        switch (operacao) {
-            case "inserirClasse":
-                 //classe.incluirClasse(operacao);
-                 break;
-            default:
-                break;
-        }
-
-
-        /*if(operacao.equals("incluirClasse")){
-
             String nome = request.getParameter("nome");
-            float valor = request.getParameter(valor);
-            Date prazoDevolucao = request.getParameter(prazoDevolucao);
+                        
+            Float valor = null;
+                
+            //APAGAR request.setAttribute("vValor", valor);
 
-            int ret = classe.incluirClasse(nome, valor, prazoDevolucao);
-
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
-            }
-        }*/
-        //Fecha Controladora
+            response.sendRedirect("administrador/formCadastrarClasse.jsp?valor="+Float.valueOf(valor));
+            
+            String prazoDevolucao = request.getParameter("prazoDevolucao");
+            
+            classe.incluirClasse("nome", valor, "prazoDevolucao");
             
         }
     }
