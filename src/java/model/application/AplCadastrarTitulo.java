@@ -2,18 +2,23 @@ package model.application;
 
 import java.util.Date;
 import model.domain.Titulo;
+import org.hibernate.Session;
 
 public class AplCadastrarTitulo {
    
-    public int incluirTitulo(String nome, Date ano, String sinopse, String categoria){
-        
-        Titulo titulo = new Titulo();   
-        titulo.setNome(nome);
-        titulo.setAno(ano);
-        titulo.setSinopse(sinopse);
-        titulo.setCategoria(categoria);
- 
+    public int incluirTitulo(String nome, String ano, String sinopse, String categoria){
+           
+        Titulo titulo = new Titulo(nome, ano, sinopse, categoria);
 
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+
+        sessao.beginTransaction();
+
+        sessao.save(titulo);
+
+        sessao.getTransaction().commit();
+        sessao.close();        
+        
 
         /*try{
             //Pega a sessão

@@ -1,3 +1,10 @@
+<%-- 
+    Document   : formGerenciarTitulo
+    Created on : 12/04/2018, 08:55:50
+    Author     : Wellington
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -139,7 +146,7 @@
                 <div class="container">
                     <div class="card-header">Gerenciar Título</div>
                     <div class="card-body">
-                        <form action="../controller/CtrCadastrarTitulo">
+                        <form name="teste"  method="POST"  action="../CtrlCadastrarTitulo">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
@@ -151,19 +158,23 @@
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <label for="nomeAtor">Atores <span class="required">*</span></label>
-                                        <textarea class="form-control" id="nomeAtor" rows="2" maxlength="255" type="text" aria-describedby="nameHelp"></textarea>
+                                        <label for="nomeAtores">Atores <span class="required">*</span></label>
+                                        <select multiple name="ator">
+                                            <option>Ator 1</option>
+                                            <option>Ator 2</option>
+                                        </select> 
                                     </div>
                                 </div>
-                            </div>
+                            </div>       
                             <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <label for="nomeDiretor">Diretor <span class="required">*</span></label>
-                                        <input class="form-control" id="nomeDiretor" maxlength="50" type="text" aria-describedby="nameHelp">
-                                    </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbDiretor">Diretor <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="cmbCategoria" name="cmbDiretor" class="form-control col-md-7 col-xs-12">	 
+                                        <option value="Comédia" selected>Sérgio</option>	 
+                                        <option value="Aventuta">Lucas</option>	 
+                                    </select>
                                 </div>
-                            </div>
+                            </div>   
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-2 col-sm-2 col-xs-12">
@@ -177,34 +188,34 @@
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <label for="nomeSinopse">Sinopse <span class="required">*</span></label>
                                         <textArea class="form-control" id="nomeSinopse" rows="2" maxlength="255" type="text" aria-describedby="nameHelp"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbCategoria">Categoria <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="cmbCategoria" name="cmbCategoria" class="form-control col-md-7 col-xs-12">	 
-                                    <option value="Comédia" selected>Comédia</option>	 
-                                    <option value="Aventuta">Aventura</option>	 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <label for="nomeClasseTitulo">Classe</label>
-                                    <input class="form-control" id="nomeClasseTitulo" type="text" aria-describedby="nameHelp">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbCategoria">Categoria <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="cmbCategoria" name="cmbCategoria" class="form-control col-md-7 col-xs-12">	 
+                                        <option value="Comédia" selected>Comédia</option>	 
+                                        <option value="Aventuta">Aventura</option>	 
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-center">
-                                 <input type="hidden" name="operacao" value="incluirTitulo">
-                                 <center><button id="btCadastrar" type="reset" class="btn btn-primary">Cadastrar</button> 
-                                 <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <label for="nomeClasseTitulo">Classe</label>
+                                        <input class="form-control" id="nomeClasseTitulo" type="text" aria-describedby="nameHelp">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <div class="form-center">
+                                    <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
+                                        <input type="hidden" name="operacao" value="inserirTitulo">  
+                                        <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
+                                </div>
+                            </div>
+                        </form>
  
                         <div id='search-box'>   
                         <div class="form-row">
@@ -267,3 +278,4 @@
     </body>
 
 </html>
+

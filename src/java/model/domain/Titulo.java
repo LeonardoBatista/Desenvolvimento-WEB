@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+//import javax.persistence.Temporal;
+//import javax.persistence.TemporalType;
 
 @Entity
 public class Titulo implements Serializable {
@@ -19,15 +19,17 @@ public class Titulo implements Serializable {
 
     private String nome;
 
-    @Temporal(TemporalType.DATE)
-    private Date ano;
+    //@Temporal(TemporalType.DATE)
+    //private Date ano;
+    
+    private String ano;
 
     private String sinopse;
 
     private String categoria;
 
     //com id 
-    public Titulo(int id, String nome, Date ano, String sinopse, String categoria) {
+    public Titulo(int id, String nome, String ano, String sinopse, String categoria) {
         this.id = id;
         this.nome = nome;
         this.ano = ano;
@@ -36,7 +38,7 @@ public class Titulo implements Serializable {
     }
 
     //sem id
-    public Titulo(String nome, Date ano, String sinopse, String categoria) {
+    public Titulo(String nome, String ano, String sinopse, String categoria) {
         this.nome = nome;
         this.ano = ano;
         this.sinopse = sinopse;
@@ -63,11 +65,11 @@ public class Titulo implements Serializable {
         this.nome = nome;
     }
 
-    public Date getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 

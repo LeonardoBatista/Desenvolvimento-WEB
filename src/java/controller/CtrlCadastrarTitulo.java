@@ -30,16 +30,20 @@ public class CtrlCadastrarTitulo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            
         //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
+        /*String operacao = request.getParameter("operacao");
             
 
         switch (operacao) {
             case "inserirTitulo":
+                    String nome = request.getParameter("nome");
+                    int idDiretor = Integer.parseInt(request.getParameter("idDiretor"));
+                    //Buscar o objeto de id=iddiretor
+                    aplCadastrarTitulo(nome, categoria, ..., diretorm classe);
                  //titulo.incluirTitulo(operacao);
                  break;
             default:
                 break;
-        }
+        }*/
 
 
         /*if(operacao.equals("incluirTitulo")){
@@ -59,6 +63,11 @@ public class CtrlCadastrarTitulo extends HttpServlet {
         }*/
         //Fecha Controladora
             
+
+       
+            titulo.incluirTitulo("nome", "ano", "sinopse", "categoria");
+ 
+        
         }
     }
 
