@@ -22,16 +22,6 @@ public class AplCadastrarAtor {
         sessao.getTransaction().commit();
         sessao.close();
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
         return 0;
     }
 
