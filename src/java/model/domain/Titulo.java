@@ -2,49 +2,66 @@ package model.domain;
 
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.Temporal;
-//import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 
 @Entity
 public class Titulo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // AUTONUMERAÇÃO 
     private int id;
 
     private String nome;
-
-    //@Temporal(TemporalType.DATE)
-    //private Date ano;
     
+    @ManyToOne(fetch=FetchType.EAGER) 
+    @JoinColumn(name="id")
+    private Ator ator;
+    
+    @ManyToOne(fetch=FetchType.EAGER) 
+    @JoinColumn(name="id")
+    private Diretor diretor;
+
     private String ano;
 
     private String sinopse;
 
     private String categoria;
 
+    @ManyToOne(fetch=FetchType.EAGER) 
+    @JoinColumn(name="id")
+    private Classe classe;
+          
     //com id 
-    public Titulo(int id, String nome, String ano, String sinopse, String categoria) {
+    public Titulo(int id, String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
         this.id = id;
         this.nome = nome;
+        this.ator = ator;
+        this.diretor = diretor;
         this.ano = ano;
         this.sinopse = sinopse;
         this.categoria = categoria;
+        this.classe = classe;
     }
-
+    
     //sem id
-    public Titulo(String nome, String ano, String sinopse, String categoria) {
+    public Titulo(String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
         this.nome = nome;
+        this.ator = ator;
+        this.diretor = diretor;
         this.ano = ano;
         this.sinopse = sinopse;
         this.categoria = categoria;
+        this.classe = classe;
     }
-
+    
     //construtor vazio
     public Titulo() {
     }
@@ -63,6 +80,22 @@ public class Titulo implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Ator getAtor() {
+        return ator;
+    }
+
+    public void setAtor(Ator ator) {
+        this.ator = ator;
+    }
+
+    public Diretor getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(Diretor diretor) {
+        this.diretor = diretor;
     }
 
     public String getAno() {
@@ -89,4 +122,12 @@ public class Titulo implements Serializable {
         this.categoria = categoria;
     }
 
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+    
 }

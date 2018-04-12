@@ -30,43 +30,8 @@ public class CtrlCadastrarTitulo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            
         //Inicia Controladora    
-        /*String operacao = request.getParameter("operacao");
-            
 
-        switch (operacao) {
-            case "inserirTitulo":
-                    String nome = request.getParameter("nome");
-                    int idDiretor = Integer.parseInt(request.getParameter("idDiretor"));
-                    //Buscar o objeto de id=iddiretor
-                    aplCadastrarTitulo(nome, categoria, ..., diretorm classe);
-                 //titulo.incluirTitulo(operacao);
-                 break;
-            default:
-                break;
-        }*/
-
-
-        /*if(operacao.equals("incluirTitulo")){
-            String nome = request.getParameter("nome"); 
-            Date ano = request.getParameter(ano); 
-            String sinopse = request.getParameter("sinopse"); 
-            String categoria = request.getParameter("categoria"); 
-
-            int ret = titulo.incluirTitulo(nome, ano, sinopse, categoria);
-
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
-            }
-        }*/
-        //Fecha Controladora
-            
-
-       
-            titulo.incluirTitulo("nome", "ano", "sinopse", "categoria");
- 
+        titulo.incluirTitulo("nome", "ano", "sinopse", "categoria");
         
         }
     }
