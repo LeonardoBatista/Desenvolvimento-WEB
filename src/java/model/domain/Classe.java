@@ -2,13 +2,10 @@ package model.domain;
 
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 @Entity
@@ -22,11 +19,10 @@ public class Classe implements Serializable {
 
     private float valor;
 
-    @Temporal(TemporalType.DATE)
-    private Date prazoDevolucao;
+    private String prazoDevolucao;
 
     //com id
-    public Classe(int id, String nome, float valor, Date prazoDevolucao) {
+    public Classe(int id, String nome, float valor, String prazoDevolucao) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
@@ -34,7 +30,7 @@ public class Classe implements Serializable {
     }
 
     //sem id
-    public Classe(String nome, float valor, Date prazoDevolucao) {
+    public Classe(String nome, float valor, String prazoDevolucao) {
         this.nome = nome;
         this.valor = valor;
         this.prazoDevolucao = prazoDevolucao;
@@ -68,11 +64,11 @@ public class Classe implements Serializable {
         this.valor = valor;
     }
 
-    public Date getPrazoDevolucao() {
+    public String getPrazoDevolucao() {
         return prazoDevolucao;
     }
 
-    public void setPrazoDevolucao(Date prazoDevolucao) {
+    public void setPrazoDevolucao(String prazoDevolucao) {
         this.prazoDevolucao = prazoDevolucao;
     }
 

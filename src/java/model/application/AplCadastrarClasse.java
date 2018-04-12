@@ -1,11 +1,10 @@
 package model.application;
 
-import java.util.Date;
 import model.domain.Classe;
 
 public class AplCadastrarClasse {
    
-    public int incluirClasse(String nome, float valor, Date prazoDevolucao){
+    public int incluirClasse(String nome, float valor, String prazoDevolucao){
 
         Classe classe = new Classe();
         classe.setNome(nome);
