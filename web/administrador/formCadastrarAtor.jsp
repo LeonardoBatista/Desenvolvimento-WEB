@@ -5,6 +5,10 @@
 --%>
 
 
+<%@page import="model.application.AplCadastrarAtor"%>
+<%@page import="model.domain.Ator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,50 +179,41 @@
                                 </div>
                             </div>   
                         </div> 
+                        <%
+                            List<Ator> Atores = new AplCadastrarAtor().listar();
 
-                        <div class='table-responsive'> 
-                            <table class='table table-bordered table-striped table-hover  '>
+                            out.println("<div class='table-responsive'>");
+                            out.println("<table class='table table-bordered table-striped table-hover'>");
+                            out.println("<tr>");
+                            out.println("<th class='col-xs-1'>Nome</th>");
+                            out.println("<th class='col-xs-1'>Ações</th>");
+                            out.println("</tr>");
 
-                                <tr>
-                                    <th class='col-xs-1'>Nome</th>
-                                    <th class='col-xs-1'>Ações</th>
-                                </tr> 
-                  <%
- /*                                   List Atores;
+                            for (int i = 0; i < Atores.size(); i++) {
 
-                                    out.println("<table>");
-                                    out.println("<tr>");
-                                    out.println("<td>Nome</td>");
-                                    out.println("</tr>");
+                                out.println("<tr>");
+                                out.println("<td>" + Atores.get(i).getNome() + "</td>");
+                                out.println("<td>");
+                                out.println("<div class='dropdown'>");
+                                out.println("<button class='btn btn-primary' type='button' data-toggle='dropdown'>Operações");
+                                out.println("<span class='caret'></span></button>");
+                                out.println("<ul class='dropdown-menu' role='menu' aria-labelledby='menu1'>");
+                                out.println("<li role='presentation'><a role='menuitem' href='#'>");
+                                out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
+                                out.println("<button type='button' class='btn btn-danger btn-xs'>Excluir</button></a>");
+                                out.println("</li>");
+                                out.println("</ul>");
+                                out.println("</div>");
+                                out.println("</td>");
+                                out.println("</tr>");
 
-                                    for (i = 0; i < Atores.length; i++) {
-                                        out.println("<tr>");
-                                        out.println("<td>" + ((Ator) Atores.get()).GetNome() + "</td>");
-                                        out.println("</tr>");
-                                    }
+                            }
 
-                                    out.println("</table>");
-*/
-                                %>
+                            out.println("</table>");
+                            out.println("</div>");
+                        %>
 
 
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary" type="button" data-toggle="dropdown">Operações
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                                <li role="presentation"><a role="menuitem" href="#">
-                                                        <button type="button" class="btn btn-warning btn-xs">Alterar</button> 
-                                                        <button type="button" class="btn btn-danger btn-xs">Excluir</button></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>                                                  
                     </div>
                 </div>
             </div>

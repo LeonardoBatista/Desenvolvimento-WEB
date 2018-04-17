@@ -17,20 +17,20 @@ public class Ator implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // AUTONUMERAÇÃO    
     private int id;
-    
+
     private String nome;
-    
+
     //com id    
     public Ator(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
-    
+
     //sem id
     public Ator(String nome) {
         this.nome = nome;
-    }    
-    
+    }
+
     //construtor vazio
     public Ator() {
     }
@@ -50,6 +50,5 @@ public class Ator implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
+
 }

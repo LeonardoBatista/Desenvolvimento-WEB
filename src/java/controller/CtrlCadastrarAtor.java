@@ -29,12 +29,12 @@ public class CtrlCadastrarAtor extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             //Inicia Controladora           
-            
-            System.out.println(request.getParameter("operacao"));
-            
-            if(request.getParameter("operacao").equalsIgnoreCase("inserir")){
+                        
+            if (request.getParameter("operacao").equalsIgnoreCase("inserir")) {
                 
                 ator.incluirAtor(request.getParameter("nomeAtor"));
+                
+                response.sendRedirect("./administrador/formCadastrarAtor.jsp");
                 
             }
             

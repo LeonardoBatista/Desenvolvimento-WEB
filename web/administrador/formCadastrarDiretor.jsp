@@ -4,6 +4,9 @@
     Author     : 2016122760112
 --%>
 
+<%@page import="model.domain.Diretor"%>
+<%@page import="java.util.List"%>
+<%@page import="model.application.AplCadastrarDiretor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +99,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                             <li>
-                                <a href="formCadastrarAtor.html">Gerenciar Ator</a>
+                                <a href="formCadastrarAtor.jsp">Gerenciar Ator</a>
                             </li>
                             <li>
                                 <a href="formCadastrarClasse.html">Gerenciar Classe</a>
@@ -159,7 +162,7 @@
                             <div class="form-group">
                                 <div class="form-center">
                                     <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                        <input type="hidden" name="operacao" value="inserirDiretor">  
+                                        <input type="hidden" name="operacao" value="inserir">  
                                         <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                                 </div>
                             </div>
@@ -175,33 +178,41 @@
                                 </div>
                             </div>   
                         </div>              
+                        <%
+                            List<Diretor> Diretores = new AplCadastrarDiretor().listar();
 
-                        <div class='table-responsive'> 
-                            <table class='table table-bordered table-striped table-hover  '>
+                            out.println("<div class='table-responsive'>");
+                            out.println("<table class='table table-bordered table-striped table-hover'>");
+                            out.println("<tr>");
+                            out.println("<th class='col-xs-1'>Nome</th>");
+                            out.println("<th class='col-xs-1'>Ações</th>");
+                            out.println("</tr>");
 
-                                <tr>
-                                    <th class='col-xs-1'>Nome</th>
-                                    <th class='col-xs-1'>Ações</th>
-                                </tr>
+                            for (int i = 0; i < Diretores.size(); i++) {
+
+                                out.println("<tr>");
+                                out.println("<td>" + Diretores.get(i).getNome() + "</td>");
+                                out.println("<td>");
+                                out.println("<div class='dropdown'>");
+                                out.println("<button class='btn btn-primary' type='button' data-toggle='dropdown'>Operações");
+                                out.println("<span class='caret'></span></button>");
+                                out.println("<ul class='dropdown-menu' role='menu' aria-labelledby='menu1'>");
+                                out.println("<li role='presentation'><a role='menuitem' href='#'>");
+                                out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
+                                out.println("<button type='button' class='btn btn-danger btn-xs'>Excluir</button></a>");
+                                out.println("</li>");
+                                out.println("</ul>");
+                                out.println("</div>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                            }
+
+                            out.println("</table>");
+                            out.println("</div>");
+                        %>
 
 
-                                <tr>
-                                    <td>1</td> 
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary" type="button" data-toggle="dropdown">Operações
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                                <li role="presentation"><a role="menuitem" href="#">
-                                                        <button type="button" class="btn btn-warning btn-xs">Alterar</button> 
-                                                        <button type="button" class="btn btn-danger btn-xs">Excluir</button></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>                                                  
                     </div>
                 </div>
             </div>

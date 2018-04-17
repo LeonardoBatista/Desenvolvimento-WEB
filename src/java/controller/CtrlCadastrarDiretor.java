@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarDiretor"})
 public class CtrlCadastrarDiretor extends HttpServlet {
-    
+
     AplCadastrarDiretor diretor = new AplCadastrarDiretor();
 
     /**
@@ -27,9 +27,15 @@ public class CtrlCadastrarDiretor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-        diretor.incluirDiretor(request.getParameter("nomeDiretor"));
-            
+
+            if (request.getParameter("operacao").equalsIgnoreCase("inserir")) {
+
+                diretor.incluirDiretor(request.getParameter("nomeDiretor"));
+
+                response.sendRedirect("./administrador/formCadastrarDiretor.jsp");
+
+            }
+
         }
     }
 
@@ -72,8 +78,4 @@ public class CtrlCadastrarDiretor extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
- 
-    
-    
 }

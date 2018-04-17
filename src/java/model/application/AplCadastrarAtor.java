@@ -46,5 +46,27 @@ public class AplCadastrarAtor {
 
         return lista;
     }
+    
+    public List listar() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Ator.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+
+        cons.addOrder(Order.asc("nome"));
+
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
+    }
 
 }
