@@ -2,17 +2,22 @@ package model.application;
 
 import java.util.Date;
 import model.domain.Dependente;
+import org.hibernate.Session;
 
 public class AplCadastrarDependente {
    
-    public int incluirDependente(int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo){
+    public int incluirDependente(String nome, Date dtNascimento, char sexo, boolean estaAtivo){
         
-        Dependente dependente = new Dependente();
-        dependente.setNumInscricao(numInscricao);   
-        dependente.setNome(nome);
-        dependente.setDtNascimento(dtNascimento);
-        dependente.setSexo(sexo);
-        dependente.setEstaAtivo(estaAtivo);
+        Dependente dependente = new Dependente(nome, dtNascimento, sexo, estaAtivo);
+        
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+
+        sessao.beginTransaction();
+
+        sessao.save(dependente);
+
+        sessao.getTransaction().commit();
+        sessao.close();
 
 
         /*try{

@@ -2,6 +2,7 @@ package model.domain;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 
 public class Socio extends Cliente {
@@ -12,11 +13,11 @@ public class Socio extends Cliente {
 
     private String telefone;
 
-    private Collection<Dependente> dependente;
+    private List<Dependente> dependente;
 
     //com id
-    public Socio(String cpf, String endereco, String telefone, Collection<Dependente> dependente, int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
-        super(id, numInscricao, nome, dtNascimento, sexo, estaAtivo);
+    public Socio(String cpf, String endereco, String telefone, List<Dependente> dependente, int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+        super(id, nome, dtNascimento, sexo, estaAtivo);
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -24,7 +25,7 @@ public class Socio extends Cliente {
     }
 
     //sem id
-    public Socio(String cpf, String endereco, String telefone, Collection<Dependente> dependente, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+    public Socio(String cpf, String endereco, String telefone, List<Dependente> dependente, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
         super(nome, dtNascimento, sexo, estaAtivo);
         this.cpf = cpf;
         this.endereco = endereco;
@@ -64,7 +65,7 @@ public class Socio extends Cliente {
         return dependente;
     }
 
-    public void setDependente(Collection<Dependente> dependente) {
+    public void setDependente(List<Dependente> dependente) {
         this.dependente = dependente;
     }
 

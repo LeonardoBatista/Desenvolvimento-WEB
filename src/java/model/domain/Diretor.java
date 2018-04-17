@@ -20,11 +20,6 @@ public class Diretor implements Serializable {
     
     private String nome;
 
-    @OneToMany(mappedBy = "diretor", fetch=FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    List<Titulo> titulo;     
-
-    
     //com id
     public Diretor(int id, String nome) {
         this.id = id;

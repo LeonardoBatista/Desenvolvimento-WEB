@@ -1,15 +1,24 @@
 package model.application;
 
 import model.domain.Classe;
+import org.hibernate.Session;
 
 public class AplCadastrarClasse {
    
     public int incluirClasse(String nome, float valor, String prazoDevolucao){
 
-        Classe classe = new Classe();
-        classe.setNome(nome);
-        classe.setValor(valor);
-        classe.setPrazoDevolucao(prazoDevolucao);
+        Classe classe = new Classe(nome, valor, prazoDevolucao);
+        
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+
+        sessao.beginTransaction();
+
+        sessao.save(classe);
+
+        sessao.getTransaction().commit();
+        sessao.close();
+        
+        
 
         /*try{
             //Pega a sessão

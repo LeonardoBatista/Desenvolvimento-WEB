@@ -6,8 +6,6 @@ public class Cliente {
 
     private int id;
 
-    private int numInscricao;
-
     private String nome;
 
     private Date dtNascimento;
@@ -17,9 +15,8 @@ public class Cliente {
     private boolean estaAtivo;
 
     //com id
-    public Cliente(int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+    public Cliente(int id, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
         this.id = id;
-        this.numInscricao = numInscricao;
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.sexo = sexo;
@@ -36,14 +33,6 @@ public class Cliente {
 
     //construtor vazio
     public Cliente() {
-    }
-
-    public int getNumInscricao() {
-        return numInscricao;
-    }
-
-    public void setNumInscricao(int numInscricao) {
-        this.numInscricao = numInscricao;
     }
 
     public String getNome() {

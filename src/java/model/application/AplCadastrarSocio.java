@@ -1,27 +1,26 @@
 package model.application;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import model.domain.Dependente;
 import model.domain.Socio;
+import org.hibernate.Session;
 
 public class AplCadastrarSocio {
-   
-    public int incluirSocio(String cpf, String endereco, String telefone, Collection<Dependente> dependente, int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo){
-        
-        Socio socio = new Socio();   
-        socio.setCpf(cpf);
-        socio.setEndereco(endereco);
-        socio.setTelefone(telefone);
-        socio.setDependente(dependente);      
-        socio.setId(id);
-        socio.setNumInscricao(numInscricao);
-        socio.setNome(nome);
-        socio.setDtNascimento(dtNascimento);
-        socio.setSexo(sexo);
-        socio.setEstaAtivo(estaAtivo);
- 
 
+    public int incluirSocio(String cpf, String endereco, String telefone, List<Dependente> dependente,
+            String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+
+        Socio socio = new Socio(cpf, endereco, telefone, dependente, nome, dtNascimento, sexo, estaAtivo);
+
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+
+        sessao.beginTransaction();
+
+        sessao.save(socio);
+
+        sessao.getTransaction().commit();
+        sessao.close();
 
         /*try{
             //Pega a sessão
@@ -35,6 +34,6 @@ public class AplCadastrarSocio {
         }*/
         return 0;
 
-    }  
-     
+    }
+
 }

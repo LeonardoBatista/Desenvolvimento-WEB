@@ -7,9 +7,9 @@ import model.domain.Titulo;
 import org.hibernate.Session;
 
 public class AplCadastrarTitulo {
-   
-    public int incluirTitulo(String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe){
-           
+
+    public int incluirTitulo(String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
+
         Titulo titulo = new Titulo(nome, ator, diretor, ano, sinopse, categoria, classe);
 
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
@@ -19,8 +19,8 @@ public class AplCadastrarTitulo {
         sessao.save(titulo);
 
         sessao.getTransaction().commit();
-        sessao.close();        
-        
+        sessao.close();
+
 
         /*try{
             //Pega a sessão
@@ -34,6 +34,6 @@ public class AplCadastrarTitulo {
         }*/
         return 0;
 
-    }  
-     
+    }
+
 }

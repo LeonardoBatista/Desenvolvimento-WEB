@@ -12,7 +12,7 @@ public class AplCadastrarAtor {
     public int incluirAtor(String nome) {
 
         Ator ator = new Ator(nome);
-
+        
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
         sessao.beginTransaction();

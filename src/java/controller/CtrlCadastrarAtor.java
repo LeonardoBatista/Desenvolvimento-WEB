@@ -30,7 +30,14 @@ public class CtrlCadastrarAtor extends HttpServlet {
 
             //Inicia Controladora           
             
-            ator.incluirAtor(request.getParameter("nomeAtor"));
+            System.out.println(request.getParameter("operacao"));
+            
+            if(request.getParameter("operacao").equalsIgnoreCase("inserir")){
+                
+                ator.incluirAtor(request.getParameter("nomeAtor"));
+                
+            }
+            
 
             /*        if(operacao.equals("incluirAtor")){
             

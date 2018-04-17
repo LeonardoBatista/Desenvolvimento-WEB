@@ -5,8 +5,8 @@ import java.util.Date;
 public class Dependente extends Cliente {
 
     //com id
-    public Dependente(int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
-        super(id, numInscricao, nome, dtNascimento, sexo, estaAtivo);
+    public Dependente(int id, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+        super(id, nome, dtNascimento, sexo, estaAtivo);
     }
 
     //sem id

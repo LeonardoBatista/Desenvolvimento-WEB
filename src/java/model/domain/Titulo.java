@@ -12,21 +12,21 @@ import javax.persistence.ManyToOne;
 
 
 
-@Entity
+//@Entity
 public class Titulo implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // AUTONUMERAÇÃO 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
     private int id;
 
     private String nome;
     
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="id")
+//    @ManyToOne(fetch=FetchType.EAGER) 
+//    @JoinColumn(name="id")
     private Ator ator;
     
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="id")
+//    @ManyToOne(fetch=FetchType.EAGER) 
+//    @JoinColumn(name="id")
     private Diretor diretor;
 
     private String ano;
@@ -35,8 +35,8 @@ public class Titulo implements Serializable {
 
     private String categoria;
 
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="id")
+//    @ManyToOne(fetch=FetchType.EAGER) 
+//    @JoinColumn(name="id")
     private Classe classe;
           
     //com id 

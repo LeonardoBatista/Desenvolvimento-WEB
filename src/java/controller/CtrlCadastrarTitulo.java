@@ -31,7 +31,7 @@ public class CtrlCadastrarTitulo extends HttpServlet {
            
         //Inicia Controladora    
 
-        titulo.incluirTitulo("nome", "ano", "sinopse", "categoria");
+        
         
         }
     }

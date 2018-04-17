@@ -20,10 +20,6 @@ public class Ator implements Serializable {
     
     private String nome;
     
-    @OneToMany(mappedBy = "ator", fetch=FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    List<Titulo> titulo;   
-    
     //com id    
     public Ator(int id, String nome) {
         this.id = id;
