@@ -29,18 +29,20 @@ public class CtrlCadastrarClasse extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            
         //Inicia Controladora    
-            String nome = request.getParameter("nome");
+            String nome = request.getParameter("nomeClasse");
                         
-            Float valor = null;
-                
-            //APAGAR request.setAttribute("vValor", valor);
-
-            response.sendRedirect("administrador/formCadastrarClasse.jsp?valor="+Float.valueOf(valor));
+            Float valor = Float.parseFloat(request.getParameter("valorClasse"));            
             
-            String prazoDevolucao = request.getParameter("prazoDevolucao");
+            String prazoDevolucao = request.getParameter("devolucao");
             
-            classe.incluirClasse("nome", valor, "prazoDevolucao");
+            classe.incluirClasse(nome, valor, prazoDevolucao);
             
+            response.sendRedirect("./administrador/formCadastrarClasse.jsp");
+            
+            
+            
+            
+            //response.sendRedirect("administrador/formCadastrarClasse.jsp?valor="+Float.valueOf(valor));
         }
     }
 

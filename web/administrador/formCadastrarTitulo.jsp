@@ -4,6 +4,15 @@
     Author     : Wellington
 --%>
 
+<%@page import="model.application.AplCadastrarClasse"%>
+<%@page import="model.domain.Classe"%>
+<%@page import="model.application.AplCadastrarDiretor"%>
+<%@page import="model.domain.Diretor"%>
+<%@page import="model.application.AplCadastrarAtor"%>
+<%@page import="model.domain.Ator"%>
+<%@page import="model.domain.Titulo"%>
+<%@page import="model.application.AplCadastrarTitulo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,30 +160,37 @@
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <label for="nomeTitulo">Nome <span class="required">*</span></label>
-                                        <input class="form-control" id="nomeTitulo"  maxlength="50" type="text" aria-describedby="nameHelp">
+                                        <input class="form-control" id="nomeTitulo" name="nomeT" maxlength="50" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <label for="nomeAtores">Atores <span class="required">*</span></label>
-                                        <select multiple name="ator">
-                                            <option>Ator 1</option>
-                                            <option>Ator 2</option>
-                                        </select> 
-                                    </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbAtor">Ator <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="cmbAtor" name="cmbAtor" class="form-control col-md-7 col-xs-12">
+                                        <%
+                                        List<Ator> Atores = new AplCadastrarAtor().listar();
+                                        int i;
+                                            for (i = 0; i < Atores.size(); i++) {
+                                                out.println("<option name ="  + Atores.get(i).getId() + ">" + Atores.get(i).getNome() );
+                                            } 
+                                        %>        
+                                    </select>
                                 </div>
                             </div>       
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbDiretor">Diretor <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="cmbCategoria" name="cmbDiretor" class="form-control col-md-7 col-xs-12">	 
-                                        <option value="Comédia" selected>Sérgio</option>	 
-                                        <option value="Aventuta">Lucas</option>	 
+                                    <select id="cmbDiretor" name="cmbDiretor" class="form-control col-md-7 col-xs-12">
+                                        <%
+                                        List<Diretor> Diretores = new AplCadastrarDiretor().listar();                                      
+                                            for (i = 0; i < Diretores.size(); i++) {
+                                                out.println("<option name ="  + Diretores.get(i).getId() + ">" + Diretores.get(i).getNome() );
+                                            } 
+                                        %>        
                                     </select>
                                 </div>
-                            </div>   
+                            </div>    
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-2 col-sm-2 col-xs-12">
@@ -201,71 +217,81 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <label for="nomeClasseTitulo">Classe</label>
-                                        <input class="form-control" id="nomeClasseTitulo" type="text" aria-describedby="nameHelp">
-                                    </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbClasse">Classe <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="cmbClasse" name="cmbClasse" class="form-control col-md-7 col-xs-12">
+                                        <%
+                                        List<Classe> Classes = new AplCadastrarClasse().listar();                                      
+                                            for (i = 0; i < Classes.size(); i++) {
+                                                out.println("<option name ="  + Classes.get(i).getId() + ">" + Classes.get(i).getNome() );
+                                            } 
+                                        %>        
+                                    </select>
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <div class="form-center">
                                     <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                        <input type="hidden" name="operacao" value="inserirTitulo">  
+                                        <input type="hidden" name="operacao" value="inserir">  
                                         <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                                 </div>
                             </div>
                         </form>
- 
                         <div id='search-box'>   
-                        <div class="form-row">
-                        <div class="col-md-10 col-sm-1 col-xs-2">
-                          <form action='/search' id='search-form' method='get' target='_top'>
-                            <input id='search-text' name='q' placeholder='Digite sua pesquisa' type='text'/>
-                            <button id='search-button' type='submit'><span>Buscar</span></button>
-                          </form>
-                        </div>
-                        </div>   
-                        </div>                     
-                          
-                        <div class='table-responsive'> 
-                        <table class='table table-bordered table-striped table-hover  '>
+                            <div class="form-row">
+                                <div class="col-md-10 col-sm-1 col-xs-2">
+                                    <form action='/search' id='search-form' method='get' target='_top'>
+                                        <input id='search-text' name='q' placeholder='Digite sua pesquisa' type='text'/>
+                                        <button id='search-button' type='submit'><span>Buscar</span></button>
+                                    </form>
+                                </div>
+                            </div>   
+                        </div>                      
+                        <%
+                            List<Titulo> Titulos = new AplCadastrarTitulo().listar();
 
-                                    <tr>
-                                        <th class='col-xs-1'>Nome</th>
-                                        <th class='col-xs-5'>Atores</th>	
-                                        <th class='col-xs-2'>Diretor</th>
-                                        <th class='col-xs-1'>Ano</th>
-                                        <th class='col-xs-5'>Sinopse</th>	
-                                        <th class='col-xs-2'>Categoria</th>
-                                        <th class='col-xs-1'>Classe</th>  
-                                        <th class='col-xs-1'>Ações</th>
-                                    </tr>
+                            out.println("<div class='table-responsive'>");
+                            out.println("<table class='table table-bordered table-striped table-hover'>");
+                            out.println("<tr>");
+                            out.println("<th class='col-xs-1'>Título</th>");
+                            out.println("<th class='col-xs-1'>Ator</th>");
+                            out.println("<th class='col-xs-1'>Diretor</th>");
+                            out.println("<th class='col-xs-1'>Ano</th>");
+                            out.println("<th class='col-xs-1'>Sinopse</th>");
+                            out.println("<th class='col-xs-1'>Categoria</th>");
+                            out.println("<th class='col-xs-1'>Classe</th>");
+                            out.println("<th class='col-xs-1'>Ações</th>");
+                            out.println("</tr>");
 
+                            for (i = 0; i < Titulos.size(); i++) {
 
-                            <tr>
-                                    <td>1</td>
-                                    <td>2</td> 	
-                                    <td>3</td>  
-                                    <td>4</td>
-                                    <td>5</td> 	
-                                    <td>6</td> 
-                                    <td>7</td>   
-                                    <td>
-                                    <div class="dropdown">
-                                      <button class="btn btn-primary" type="button" data-toggle="dropdown">Operações
-                                      <span class="caret"></span></button>
-                                      <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                        <li role="presentation"><a role="menuitem" href="#">
-                                                <button type="button" class="btn btn-warning btn-xs">Alterar</button> 
-                                                <button type="button" class="btn btn-danger btn-xs">Excluir</button></a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    </td>
-                            </tr>
-                        </table>
-                        </div>                                                  
+                                out.println("<tr>");
+                                out.println("<td>" + Titulos.get(i).getNome() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getAtor().getNome() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getDiretor().getNome() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getAno() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getSinopse() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getCategoria() + "</td>");
+                                out.println("<td>" + Titulos.get(i).getClasse().getNome() + "</td>");
+                                out.println("<td>");
+                                out.println("<div class='dropdown'>");
+                                out.println("<button class='btn btn-primary' type='button' data-toggle='dropdown'>Operações");
+                                out.println("<span class='caret'></span></button>");
+                                out.println("<ul class='dropdown-menu' role='menu' aria-labelledby='menu1'>");
+                                out.println("<li role='presentation'><a role='menuitem' href='#'>");
+                                out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
+                                out.println("<button type='button' class='btn btn-danger btn-xs'>Excluir</button></a>");
+                                out.println("</li>");
+                                out.println("</ul>");
+                                out.println("</div>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                            }
+
+                            out.println("</table>");
+                            out.println("</div>");
+                        %>                                                                           
                 </div>
             </div>
                 </div>

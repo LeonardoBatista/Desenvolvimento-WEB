@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarItem"})
 public class CtrlCadastrarItem extends HttpServlet {
-    
+
     AplCadastrarItem item = new AplCadastrarItem();
 
     /**
@@ -28,20 +28,20 @@ public class CtrlCadastrarItem extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-        //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
+            //Inicia Controladora    
+
+            String numSerie = request.getParameter("numeroSerieItem");
+
+            String dtAquisicao = request.getParameter("dtAquisicao");
+
+            String tipoItem = request.getParameter("tipo");
             
+            item.incluirItem(numSerie, dtAquisicao, tipoItem);
+            
+            response.sendRedirect("./administrador/formCadastrarItem.jsp");
 
-        switch (operacao) {
-            case "inserirItem":
-                 //item.incluirItem(operacao);
-                 break;
-            default:
-                break;
-        }
 
-        /*if(operacao.equals("incluirItem")){
+            /*if(operacao.equals("incluirItem")){
 
             String numSerie = request.getParameter("numSerie");
             Date dtAquisicao = request.getParameter(dtAquisicao);
@@ -56,8 +56,7 @@ public class CtrlCadastrarItem extends HttpServlet {
                 case 2:
             }
         }*/
-        //Fecha Controladora
-            
+            //Fecha Controladora
         }
     }
 
@@ -100,8 +99,4 @@ public class CtrlCadastrarItem extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
- 
-    
-    
 }

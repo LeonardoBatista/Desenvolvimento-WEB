@@ -1,16 +1,18 @@
 package model.application;
 
 import java.util.Date;
+import model.domain.Cliente;
 import model.domain.Item;
 import model.domain.Locacao;
 import org.hibernate.Session;
 
 public class AplCadastrarLocacao {
 
-    public int incluirLocacao(Date dtDevolucao, Date dtDevolucaoPrevista, Date dtDevolucaoEfetiva,
-            float valorCobrado, float multaCobrado, Item item) {
+    public int incluirLocacao(String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
 
-        Locacao locacao = new Locacao(dtDevolucao, dtDevolucaoPrevista, dtDevolucaoEfetiva, valorCobrado, multaCobrado, item);
+        Locacao locacao = new Locacao(dtDevolucao, dtDevolucaoPrevista, dtDevolucaoEfetiva, 
+                valorCobrado, multaCobrado, item, cliente);
 
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 

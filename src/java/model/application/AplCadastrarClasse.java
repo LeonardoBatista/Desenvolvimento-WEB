@@ -1,14 +1,18 @@
 package model.application;
 
+import java.util.List;
 import model.domain.Classe;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarClasse {
-   
-    public int incluirClasse(String nome, float valor, String prazoDevolucao){
+
+    public int incluirClasse(String nome, float valor, String prazoDevolucao) {
 
         Classe classe = new Classe(nome, valor, prazoDevolucao);
-        
+
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
         sessao.beginTransaction();
@@ -17,21 +21,31 @@ public class AplCadastrarClasse {
 
         sessao.getTransaction().commit();
         sessao.close();
-        
-        
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
         return 0;
 
-    }  
-     
+    }
+
+    public List listar() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Classe.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+
+        cons.addOrder(Order.asc("nome"));
+
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
+    }
+
 }

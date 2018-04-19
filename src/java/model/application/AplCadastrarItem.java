@@ -1,12 +1,16 @@
 package model.application;
 
 import java.util.Date;
+import java.util.List;
 import model.domain.Item;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarItem {
 
-    public int incluirItem(String numSerie, Date dtAquisicao, String tipoItem) {
+    public int incluirItem(String numSerie, String dtAquisicao, String tipoItem) {
 
         Item item = new Item(numSerie, dtAquisicao, tipoItem);
 
@@ -19,18 +23,30 @@ public class AplCadastrarItem {
         sessao.getTransaction().commit();
         sessao.close();
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
         return 0;
 
+    }
+
+    public List listar() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Item.class);
+
+        cons.add(Restrictions.like("numSerie", "%"));
+
+        cons.addOrder(Order.asc("numSerie"));
+
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
     }
 
 }

@@ -17,13 +17,13 @@ public class Locacao implements Serializable {
     private int id;
 
     @Temporal(TemporalType.DATE)
-    private Date dtDevolucao;
+    private String dtDevolucao;
 
     @Temporal(TemporalType.DATE)
-    private Date dtDevolucaoPrevista;
+    private String dtDevolucaoPrevista;
 
     @Temporal(TemporalType.DATE)
-    private Date dtDevolucaoEfetiva;
+    private String dtDevolucaoEfetiva;
 
     private float valorCobrado;
 
@@ -31,8 +31,11 @@ public class Locacao implements Serializable {
 
     private Item item;
 
+    private Cliente cliente;
+
     //com id
-    public Locacao(int id, Date dtDevolucao, Date dtDevolucaoPrevista, Date dtDevolucaoEfetiva, float valorCobrado, float multaCobrado, Item item) {
+    public Locacao(int id, String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
         this.id = id;
         this.dtDevolucao = dtDevolucao;
         this.dtDevolucaoPrevista = dtDevolucaoPrevista;
@@ -40,16 +43,19 @@ public class Locacao implements Serializable {
         this.valorCobrado = valorCobrado;
         this.multaCobrado = multaCobrado;
         this.item = item;
+        this.cliente = cliente;
     }
 
     //sem id
-    public Locacao(Date dtDevolucao, Date dtDevolucaoPrevista, Date dtDevolucaoEfetiva, float valorCobrado, float multaCobrado, Item item) {
+    public Locacao(String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
         this.dtDevolucao = dtDevolucao;
         this.dtDevolucaoPrevista = dtDevolucaoPrevista;
         this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
         this.valorCobrado = valorCobrado;
         this.multaCobrado = multaCobrado;
         this.item = item;
+        this.cliente = cliente;
     }
 
     //construtor vazio
@@ -64,27 +70,27 @@ public class Locacao implements Serializable {
         this.id = id;
     }
 
-    public Date getDtDevolucao() {
+    public String getDtDevolucao() {
         return dtDevolucao;
     }
 
-    public void setDtDevolucao(Date dtDevolucao) {
+    public void setDtDevolucao(String dtDevolucao) {
         this.dtDevolucao = dtDevolucao;
     }
 
-    public Date getDtDevolucaoPrevista() {
+    public String getDtDevolucaoPrevista() {
         return dtDevolucaoPrevista;
     }
 
-    public void setDtDevolucaoPrevista(Date dtDevolucaoPrevista) {
+    public void setDtDevolucaoPrevista(String dtDevolucaoPrevista) {
         this.dtDevolucaoPrevista = dtDevolucaoPrevista;
     }
 
-    public Date getDtDevolucaoEfetiva() {
+    public String getDtDevolucaoEfetiva() {
         return dtDevolucaoEfetiva;
     }
 
-    public void setDtDevolucaoEfetiva(Date dtDevolucaoEfetiva) {
+    public void setDtDevolucaoEfetiva(String dtDevolucaoEfetiva) {
         this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
     }
 
@@ -112,4 +118,11 @@ public class Locacao implements Serializable {
         this.item = item;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

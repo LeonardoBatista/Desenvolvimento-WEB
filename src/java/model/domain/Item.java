@@ -18,13 +18,13 @@ public class Item implements Serializable {
 
     private String numSerie;
 
-    @Temporal(TemporalType.DATE)
-    private Date dtAquisicao;
+    //@Temporal(TemporalType.DATE)
+    private String dtAquisicao;
 
     private String tipoItem;
 
     //com id
-    public Item(int id, String numSerie, Date dtAquisicao, String tipoItem) {
+    public Item(int id, String numSerie, String dtAquisicao, String tipoItem) {
         this.id = id;
         this.numSerie = numSerie;
         this.dtAquisicao = dtAquisicao;
@@ -32,7 +32,7 @@ public class Item implements Serializable {
     }
 
     //sem id
-    public Item(String numSerie, Date dtAquisicao, String tipoItem) {
+    public Item(String numSerie, String dtAquisicao, String tipoItem) {
         this.numSerie = numSerie;
         this.dtAquisicao = dtAquisicao;
         this.tipoItem = tipoItem;
@@ -58,11 +58,11 @@ public class Item implements Serializable {
         this.numSerie = numSerie;
     }
 
-    public Date getDtAquisicao() {
+    public String getDtAquisicao() {
         return dtAquisicao;
     }
 
-    public void setDtAquisicao(Date dtAquisicao) {
+    public void setDtAquisicao(String dtAquisicao) {
         this.dtAquisicao = dtAquisicao;
     }
 
