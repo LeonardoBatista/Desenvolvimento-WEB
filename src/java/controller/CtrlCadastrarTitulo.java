@@ -9,11 +9,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.AplCadastrarAtor;
+import model.application.AplCadastrarClasse;
+import model.application.AplCadastrarDiretor;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarTitulo"})
 public class CtrlCadastrarTitulo extends HttpServlet {
-    
-    AplCadastrarTitulo titulo = new AplCadastrarTitulo();
+
+    AplCadastrarTitulo aplTitulo = new AplCadastrarTitulo();
+    AplCadastrarAtor aplAtor = new AplCadastrarAtor();
+    AplCadastrarDiretor aplDiretor = new AplCadastrarDiretor();
+    AplCadastrarClasse aplClasse = new AplCadastrarClasse();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,11 +34,18 @@ public class CtrlCadastrarTitulo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-        //Inicia Controladora    
 
-        
-        
+            //Inicia Controladora    
+            String nome = request.getParameter("nomeTitulo");
+            String ano = request.getParameter("anoTitulo");
+            String sinopse = request.getParameter("nomeSinopse");
+            String categoria = request.getParameter("cmbCategoria");
+            
+            aplTitulo.incluirTitulo(nome, aplAtor.listarID(request.getParameterValues("cmbAtor")), aplDiretor.get(request.getParameter("cmbDiretor")),
+                    ano, sinopse, categoria, aplClasse.get(request.getParameter("cmbClasse")));
+            
+            response.sendRedirect("./administrador/formCadastrarTitulo.jsp");
+
         }
     }
 
@@ -75,8 +88,4 @@ public class CtrlCadastrarTitulo extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
- 
-    
-    
 }

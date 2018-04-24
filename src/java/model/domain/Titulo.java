@@ -1,32 +1,31 @@
 package model.domain;
 
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
-
-
-//@Entity
+@Entity
 public class Titulo implements Serializable {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
     private int id;
 
     private String nome;
-    
-//    @ManyToOne(fetch=FetchType.EAGER) 
-//    @JoinColumn(name="id")
-    private Ator ator;
-    
-//    @ManyToOne(fetch=FetchType.EAGER) 
-//    @JoinColumn(name="id")
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Ator> ator = new ArrayList<Ator>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private Diretor diretor;
 
     private String ano;
@@ -35,12 +34,11 @@ public class Titulo implements Serializable {
 
     private String categoria;
 
-//    @ManyToOne(fetch=FetchType.EAGER) 
-//    @JoinColumn(name="id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
-          
+
     //com id 
-    public Titulo(int id, String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
+    public Titulo(int id, String nome, List<Ator> ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
         this.id = id;
         this.nome = nome;
         this.ator = ator;
@@ -50,9 +48,9 @@ public class Titulo implements Serializable {
         this.categoria = categoria;
         this.classe = classe;
     }
-    
+
     //sem id
-    public Titulo(String nome, Ator ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
+    public Titulo(String nome, List<Ator> ator, Diretor diretor, String ano, String sinopse, String categoria, Classe classe) {
         this.nome = nome;
         this.ator = ator;
         this.diretor = diretor;
@@ -61,7 +59,7 @@ public class Titulo implements Serializable {
         this.categoria = categoria;
         this.classe = classe;
     }
-    
+
     //construtor vazio
     public Titulo() {
     }
@@ -82,11 +80,11 @@ public class Titulo implements Serializable {
         this.nome = nome;
     }
 
-    public Ator getAtor() {
+    public List<Ator> getAtor() {
         return ator;
     }
 
-    public void setAtor(Ator ator) {
+    public void setAtor(List<Ator> ator) {
         this.ator = ator;
     }
 
@@ -129,5 +127,5 @@ public class Titulo implements Serializable {
     public void setClasse(Classe classe) {
         this.classe = classe;
     }
-    
+
 }

@@ -180,7 +180,7 @@
                             </div>   
                         </div> 
                         <%
-                            List<Ator> Atores = new AplCadastrarAtor().listar();
+                            List<Ator> Atores = new AplCadastrarAtor().listarTodos();
 
                             out.println("<div class='table-responsive'>");
                             out.println("<table class='table table-bordered table-striped table-hover'>");

@@ -12,7 +12,7 @@ public class AplCadastrarAtor {
     public int incluirAtor(String nome) {
 
         Ator ator = new Ator(nome);
-        
+
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
         sessao.beginTransaction();
@@ -25,7 +25,7 @@ public class AplCadastrarAtor {
         return 0;
     }
 
-    public List listar(String nome) {
+    public List listarID(String id[]) {
 
         List lista;
         Session sessao;
@@ -34,20 +34,22 @@ public class AplCadastrarAtor {
         sessao.beginTransaction();
 
         Criteria cons = sessao.createCriteria(Ator.class);
-        
-        cons.add(Restrictions.like("nome", nome + "%"));
-        
-        cons.addOrder(Order.asc("nome"));
-        
+        for (String id1 : id) {
+            cons.add(Restrictions.eq("id", Integer.valueOf(id1)));
+        }
+
         lista = cons.list();
 
         sessao.getTransaction().commit();
         sessao.close();
+        
+        System.out.println("saida do banco");
+        System.out.println(lista.isEmpty());
 
         return lista;
     }
-    
-    public List listar() {
+
+    public List listarTodos() {
 
         List lista;
         Session sessao;

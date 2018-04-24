@@ -1,5 +1,6 @@
 package model.application;
 
+import java.io.Serializable;
 import java.util.List;
 import model.domain.Classe;
 import org.hibernate.Criteria;
@@ -46,6 +47,19 @@ public class AplCadastrarClasse {
         sessao.close();
 
         return lista;
+    }
+
+    public Classe get(String id) {
+
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Classe obj = (Classe) sessao.get(Classe.class, Integer.valueOf(id));
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return obj;
     }
 
 }

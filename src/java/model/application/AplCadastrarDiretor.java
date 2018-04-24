@@ -1,5 +1,6 @@
 package model.application;
 
+import java.io.Serializable;
 import java.util.List;
 import model.domain.Diretor;
 import org.hibernate.Criteria;
@@ -45,6 +46,19 @@ public class AplCadastrarDiretor {
         sessao.close();
 
         return lista;
+    }
+
+    public Diretor get(String id) {
+
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Diretor obj = (Diretor) sessao.get(Diretor.class, Integer.valueOf(id));
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return obj;
     }
 
 }

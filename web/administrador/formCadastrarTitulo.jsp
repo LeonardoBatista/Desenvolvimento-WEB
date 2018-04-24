@@ -31,53 +31,53 @@
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet">
-        
+
         <style>
-        #search-box {
-            position: relative;
-            width: 100%;
-            margin: 0;
-        }
-        #search-form {
-            height: 40px;
-            border: 1px solid #999;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            background-color: #fff;
-            overflow: hidden;
-        }
-        #search-text {
-            font-size: 14px;
-            color: #ddd;
-            border-width: 0;
-            background: transparent;
-        }
-        #search-box input[type="text"] {
-            width: 90%;
-            padding: 11px 0 12px 1em;
-            color: #333;
-            outline: none;
-        }
-        #search-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 42px;
-            width: 80px;
-            font-size: 14px;
-            color: #fff;
-            text-align: center;
-            line-height: 42px;
-            border-width: 0;
-            background-color: #4d90fe; /*--define a cor do botão Buscar--*/
-            -webkit-border-radius: 0px 5px 5px 0px;
-            -moz-border-radius: 0px 5px 5px 0px;
-            border-radius: 0px 5px 5px 0px;
-            cursor: pointer;
-        }
+            #search-box {
+                position: relative;
+                width: 100%;
+                margin: 0;
+            }
+            #search-form {
+                height: 40px;
+                border: 1px solid #999;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                background-color: #fff;
+                overflow: hidden;
+            }
+            #search-text {
+                font-size: 14px;
+                color: #ddd;
+                border-width: 0;
+                background: transparent;
+            }
+            #search-box input[type="text"] {
+                width: 90%;
+                padding: 11px 0 12px 1em;
+                color: #333;
+                outline: none;
+            }
+            #search-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 42px;
+                width: 80px;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+                line-height: 42px;
+                border-width: 0;
+                background-color: #4d90fe; /*--define a cor do botão Buscar--*/
+                -webkit-border-radius: 0px 5px 5px 0px;
+                -moz-border-radius: 0px 5px 5px 0px;
+                border-radius: 0px 5px 5px 0px;
+                cursor: pointer;
+            }
         </style>
-        
+
     </head>
 
     <body class="bg-dark">
@@ -160,21 +160,21 @@
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <label for="nomeTitulo">Nome <span class="required">*</span></label>
-                                        <input class="form-control" id="nomeTitulo" name="nomeT" maxlength="50" type="text" aria-describedby="nameHelp">
+                                        <input class="form-control" id="nomeTitulo" name="nomeTitulo" maxlength="50" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbAtor">Ator <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="cmbAtor" name="cmbAtor" class="form-control col-md-7 col-xs-12">
+                                    <select multiple id="cmbAtor" name="cmbAtor" class="form-control col-md-7 col-xs-12">
                                         <%
-                                        List<Ator> Atores = new AplCadastrarAtor().listar();
-                                        int i;
+                                            List<Ator> Atores = new AplCadastrarAtor().listarTodos();
+                                            int i;
                                             for (i = 0; i < Atores.size(); i++) {
-                                                out.println("<option name ="  + Atores.get(i).getId() + ">" + Atores.get(i).getNome() );
-                                            } 
-                                        %>        
+                                                out.println("<option value =" + Atores.get(i).getId() + ">" + Atores.get(i).getNome());
+                                            }
+                                        %>
                                     </select>
                                 </div>
                             </div>       
@@ -183,10 +183,10 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="cmbDiretor" name="cmbDiretor" class="form-control col-md-7 col-xs-12">
                                         <%
-                                        List<Diretor> Diretores = new AplCadastrarDiretor().listar();                                      
+                                            List<Diretor> Diretores = new AplCadastrarDiretor().listar();
                                             for (i = 0; i < Diretores.size(); i++) {
-                                                out.println("<option name ="  + Diretores.get(i).getId() + ">" + Diretores.get(i).getNome() );
-                                            } 
+                                                out.println("<option value =" + Diretores.get(i).getId() + ">" + Diretores.get(i).getNome());
+                                            }
                                         %>        
                                     </select>
                                 </div>
@@ -195,7 +195,7 @@
                                 <div class="form-row">
                                     <div class="col-md-2 col-sm-2 col-xs-12">
                                         <label for="anoTitulo">Ano <span class="required">*</span></label>
-                                        <input class="form-control" id="anoTitulo" maxlength="4" type="text" aria-describedby="nameHelp">
+                                        <input class="form-control" name="anoTitulo" id="anoTitulo" maxlength="4" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <label for="nomeSinopse">Sinopse <span class="required">*</span></label>
-                                        <textArea class="form-control" id="nomeSinopse" rows="2" maxlength="255" type="text" aria-describedby="nameHelp"></textarea>
+                                        <textArea class="form-control" name="nomeSinopse" id="nomeSinopse" rows="2" maxlength="255" type="text" aria-describedby="nameHelp"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -221,10 +221,10 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="cmbClasse" name="cmbClasse" class="form-control col-md-7 col-xs-12">
                                         <%
-                                        List<Classe> Classes = new AplCadastrarClasse().listar();                                      
+                                            List<Classe> Classes = new AplCadastrarClasse().listar();
                                             for (i = 0; i < Classes.size(); i++) {
-                                                out.println("<option name ="  + Classes.get(i).getId() + ">" + Classes.get(i).getNome() );
-                                            } 
+                                                out.println("<option value =" + Classes.get(i).getId() + ">" + Classes.get(i).getNome());
+                                            }
                                         %>        
                                     </select>
                                 </div>
@@ -267,7 +267,11 @@
 
                                 out.println("<tr>");
                                 out.println("<td>" + Titulos.get(i).getNome() + "</td>");
-                                out.println("<td>" + Titulos.get(i).getAtor().getNome() + "</td>");
+                                out.println("<td>");
+                                for (Ator ator1 : Titulos.get(i).getAtor()) {
+                                    out.println(ator1.getNome());
+                                }
+                                out.println("</td>");
                                 out.println("<td>" + Titulos.get(i).getDiretor().getNome() + "</td>");
                                 out.println("<td>" + Titulos.get(i).getAno() + "</td>");
                                 out.println("<td>" + Titulos.get(i).getSinopse() + "</td>");

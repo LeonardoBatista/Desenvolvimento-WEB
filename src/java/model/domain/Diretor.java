@@ -15,7 +15,7 @@ import org.hibernate.annotations.CascadeType;
 public class Diretor implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // AUTONUMERAÇÃO 
+    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
     private int id;
     
     private String nome;
