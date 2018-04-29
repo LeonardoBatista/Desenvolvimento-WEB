@@ -28,32 +28,18 @@ public class CtrlCadastrarAtor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            //Inicia Controladora           
-                        
-            if (request.getParameter("operacao").equalsIgnoreCase("inserir")) {
-                
+      
+            String valor = request.getParameter("operacao");
+            
+            if(valor.equals("inserir")){              
                 ator.incluirAtor(request.getParameter("nomeAtor"));
-                
-                response.sendRedirect("./administrador/formCadastrarAtor.jsp");
-                
+                response.sendRedirect("../administrador/formCadastrarAtor.jsp");
+            }else if (valor.equals("excluir")){
+                int idAutor = Integer.parseInt(request.getParameter("id"));  
+                ator.excluirAtor(idAutor);
+                response.sendRedirect("../administrador/formCadastrarAtor.jsp");
             }
-            
 
-            /*        if(operacao.equals("incluirAtor")){
-            
-            String nome = request.getParameter("nome");
-
-            int ret = ator.incluirAtor("nome");
-
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
-            }
-        }
-        //Fecha Controladora
-             */
         }
     }
 

@@ -70,5 +70,29 @@ public class AplCadastrarAtor {
 
         return lista;
     }
+    
+    public static int excluirAtor(int id){
+
+        Ator ator = new Ator();
+        ator.setId(id);
+        
+        
+        Session sessao = null;
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        
+        try{   
+            sessao.beginTransaction();
+
+            sessao.delete(id);
+
+            sessao.getTransaction().commit();
+            return 1;
+        }catch (Exception e){
+            sessao.getTransaction().rollback();
+            return 0;
+        }finally{
+            sessao.close();
+        }    				
+    }
 
 }
