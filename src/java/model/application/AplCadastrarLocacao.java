@@ -1,6 +1,5 @@
 package model.application;
 
-import java.util.Date;
 import model.domain.Cliente;
 import model.domain.Item;
 import model.domain.Locacao;
@@ -8,11 +7,12 @@ import org.hibernate.Session;
 
 public class AplCadastrarLocacao {
 
-    public int incluirLocacao(String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
+    //OK
+    public int incluirLocacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
 
-        Locacao locacao = new Locacao(dtDevolucao, dtDevolucaoPrevista, dtDevolucaoEfetiva, 
-                valorCobrado, multaCobrado, item, cliente);
+        Locacao locacao = new Locacao(dtLocacao, dtDevolucaoPrevista, dtDevolucaoEfetiva,
+                valorCobrado, multaCobrada, item, cliente);
 
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
@@ -23,16 +23,6 @@ public class AplCadastrarLocacao {
         sessao.getTransaction().commit();
         sessao.close();
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
         return 0;
 
     }

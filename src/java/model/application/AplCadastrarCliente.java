@@ -2,35 +2,42 @@ package model.application;
 
 import java.util.Date;
 import model.domain.Cliente;
+import model.domain.Dependente;
+import model.domain.Socio;
 import org.hibernate.Session;
 
 public class AplCadastrarCliente {
    
-    public int incluirCliente(int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo){
+    public int incluirDependente(String nome, String dtNascimento, String sexo, String estaAtivo, Socio socio){
         
-        Cliente cliente = new Cliente(nome, dtNascimento, sexo, estaAtivo);
+        Dependente dependente = new Dependente(nome, dtNascimento, sexo, estaAtivo, socio);
         
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
         sessao.beginTransaction();
 
-        sessao.save(cliente);
+        sessao.save(dependente);
 
         sessao.getTransaction().commit();
         sessao.close();
 
-        /*try{
-            //Pega a sessão
-            Transaction t = session.Begin...();
-            session.save(a);
-            t.commit();
-            return 1;
-        }catch(Exception e){
-            t.RollBrek();
-            return 2;
-        }*/
         return 0;
+    } 
+    
+    public int incluirSocio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone){
+        
+        Socio socio = new Socio(nome, dtNascimento, sexo, estahAtivo, cpf, endereco, telefone);
+        
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
-    }  
+        sessao.beginTransaction();
+
+        sessao.save(socio);
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return 0;
+    } 
      
 }
