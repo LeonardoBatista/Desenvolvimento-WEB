@@ -4,6 +4,9 @@
     Author     : Wellington
 --%>
 
+<%@page import="model.domain.Titulo"%>
+<%@page import="model.application.AplCadastrarTitulo"%>
+<%@page import="model.application.AplCadastrarTitulo"%>
 <%@page import="model.application.AplCadastrarItem"%>
 <%@page import="model.domain.Item"%>
 <%@page import="java.util.List"%>
@@ -193,7 +196,19 @@
                                         <input class="form-control" id="tipoItem" name="tipo" maxlength="50" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
-
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbTitulo">Titulo <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="cmbTitulo" name="cmbTitulo" class="form-control col-md-7 col-xs-12">
+                                        <%
+                                            List<Titulo> Titulos = new AplCadastrarTitulo().listar();
+                                            for (int i = 0; i < Titulos.size(); i++) {
+                                                out.println("<option value =" +Titulos.get(i).getId() + ">" + Titulos.get(i).getNome());
+                                            }
+                                        %>        
+                                    </select>
+                                </div>
+                            </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-center">
@@ -222,6 +237,7 @@
                             out.println("<th class='col-xs-1'>Número série</th>");
                             out.println("<th class='col-xs-1'>Data aquisição</th>");
                             out.println("<th class='col-xs-1'>Tipo item</th>");
+                            out.println("<th class='col-xs-1'>Titulo</th>");
                             out.println("<th class='col-xs-1'>Ações</th>");
                             out.println("</tr>");
 
@@ -231,6 +247,7 @@
                                 out.println("<td>" + Itens.get(i).getNumSerie() + "</td>");
                                 out.println("<td>" + Itens.get(i).getDtAquisicao() + "</td>");
                                 out.println("<td>" + Itens.get(i).getTipoItem() + "</td>");
+                                out.println("<td>" + Itens.get(i).getTitulo().getNome() + "</td>");
                                 out.println("<td>");
                                 out.println("<div class='dropdown'>");
                                 out.println("<button class='btn btn-primary' type='button' data-toggle='dropdown'>Operações");

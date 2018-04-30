@@ -9,11 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.AplCadastrarTitulo;
+import model.domain.Titulo;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarItem"})
 public class CtrlCadastrarItem extends HttpServlet {
 
-    AplCadastrarItem item = new AplCadastrarItem();
+    AplCadastrarItem aplItem = new AplCadastrarItem();
+    AplCadastrarTitulo aplTitulo = new AplCadastrarTitulo();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,9 +39,10 @@ public class CtrlCadastrarItem extends HttpServlet {
 
             String tipoItem = request.getParameter("tipo");
             
-            item.incluirItem(numSerie, dtAquisicao, tipoItem);
             
-            response.sendRedirect("./administrador/formCadastrarItem.jsp");
+            aplItem.incluirItem(numSerie, dtAquisicao, tipoItem, aplTitulo.get(request.getParameter("cmbTitulo")));
+            
+            response.sendRedirect("../administrador/formCadastrarItem.jsp");
 
 
             /*if(operacao.equals("incluirItem")){
