@@ -1,10 +1,10 @@
 package model.domain;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-
+@Entity
+@PrimaryKeyJoinColumn(name="numInscricao")
 public class Socio extends Cliente {
 
     private String cpf;
@@ -13,30 +13,28 @@ public class Socio extends Cliente {
 
     private String telefone;
 
-    private List<Dependente> dependente;
 
     //com id
-    public Socio(String cpf, String endereco, String telefone, List<Dependente> dependente, int id, int numInscricao, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
-        super(id, nome, dtNascimento, sexo, estaAtivo);
+    public Socio(int numInscricao, String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone) {
+        super(nome, dtNascimento, sexo, estahAtivo);
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.dependente = dependente;
     }
 
     //sem id
-    public Socio(String cpf, String endereco, String telefone, List<Dependente> dependente, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
-        super(nome, dtNascimento, sexo, estaAtivo);
+    public Socio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone) {
+        super(nome, dtNascimento, sexo, estahAtivo);
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.dependente = dependente;
     }
 
     //construtor vazio
     public Socio() {
     }
 
+    
     public String getCpf() {
         return cpf;
     }
@@ -59,14 +57,6 @@ public class Socio extends Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public Collection<Dependente> getDependente() {
-        return dependente;
-    }
-
-    public void setDependente(List<Dependente> dependente) {
-        this.dependente = dependente;
     }
 
 }

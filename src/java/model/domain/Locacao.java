@@ -1,81 +1,84 @@
 package model.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+
+
+@XmlRootElement
 @Entity
+@Table(name = "locacao")
 public class Locacao implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)  // AUTONUMERAÇÃO 
-    private int id;
-
-    @Temporal(TemporalType.DATE)
-    private String dtDevolucao;
-
-    @Temporal(TemporalType.DATE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idLocacao;
+    private String dtLocacao;
     private String dtDevolucaoPrevista;
-
-    @Temporal(TemporalType.DATE)
     private String dtDevolucaoEfetiva;
+    private int valorCobrado;
+    private int multaCobrada;
 
-    private float valorCobrado;
-
-    private float multaCobrado;
-
-    private Item item;
-
+    @ManyToOne
+    //@JoinColumn(name="idCliente")
     private Cliente cliente;
 
+    @ManyToOne
+    //@JoinColumn(name="idItem")
+    private Item item;
+
     //com id
-    public Locacao(int id, String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
-        this.id = id;
-        this.dtDevolucao = dtDevolucao;
-        this.dtDevolucaoPrevista = dtDevolucaoPrevista;
-        this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
-        this.valorCobrado = valorCobrado;
-        this.multaCobrado = multaCobrado;
-        this.item = item;
-        this.cliente = cliente;
-    }
+	public Locacao(int idLocacao, String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
+	
+		this.dtLocacao = dtLocacao;
+		this.dtDevolucaoPrevista = dtDevolucaoPrevista;
+		this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
+		this.valorCobrado = valorCobrado;
+		this.multaCobrada = multaCobrada;
+		this.item = item;
+                this.cliente = cliente;
+	}
 
     //sem id
-    public Locacao(String dtDevolucao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-            float valorCobrado, float multaCobrado, Item item, Cliente cliente) {
-        this.dtDevolucao = dtDevolucao;
-        this.dtDevolucaoPrevista = dtDevolucaoPrevista;
-        this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
-        this.valorCobrado = valorCobrado;
-        this.multaCobrado = multaCobrado;
-        this.item = item;
-        this.cliente = cliente;
-    }
+	public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
+	
+		this.dtLocacao = dtLocacao;
+		this.dtDevolucaoPrevista = dtDevolucaoPrevista;
+		this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
+		this.valorCobrado = valorCobrado;
+		this.multaCobrada = multaCobrada;
+		this.item = item;
+                this.cliente = cliente;
+	}
 
     //construtor vazio
     public Locacao() {
     }
 
-    public int getId() {
-        return id;
+    public int getIdLocacao() {
+        return idLocacao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdLocacao(int idLocacao) {
+        this.idLocacao = idLocacao;
     }
 
-    public String getDtDevolucao() {
-        return dtDevolucao;
+    @XmlElement
+    public String getDtLocacao() {
+        return dtLocacao;
     }
 
-    public void setDtDevolucao(String dtDevolucao) {
-        this.dtDevolucao = dtDevolucao;
+    public void setDtLocacao(String dtLocacao) {
+        this.dtLocacao = dtLocacao;
     }
 
     public String getDtDevolucaoPrevista() {
@@ -94,20 +97,29 @@ public class Locacao implements Serializable {
         this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
     }
 
-    public float getValorCobrado() {
+    public int getValorCobrado() {
         return valorCobrado;
     }
 
-    public void setValorCobrado(float valorCobrado) {
+    public void setValorCobrado(int valorCobrado) {
         this.valorCobrado = valorCobrado;
     }
 
-    public float getMultaCobrado() {
-        return multaCobrado;
+    public int getMultaCobrada() {
+        return multaCobrada;
     }
 
-    public void setMultaCobrado(float multaCobrado) {
-        this.multaCobrado = multaCobrado;
+    public void setMultaCobrada(int multaCobrada) {
+        this.multaCobrada = multaCobrada;
+    }
+
+    @XmlElement
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Item getItem() {
@@ -118,11 +130,8 @@ public class Locacao implements Serializable {
         this.item = item;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String toString(){
+        return Integer.toString(this.idLocacao);
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 }

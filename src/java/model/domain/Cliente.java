@@ -1,22 +1,34 @@
 package model.domain;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "cliente")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Cliente {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int numIncricao;
 
     private String nome;
 
-    private Date dtNascimento;
+    private String dtNascimento;
 
-    private char sexo;
+    private String sexo;
 
-    private boolean estaAtivo;
+    private String estaAtivo;
 
     //com id
-    public Cliente(int id, String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
-        this.id = id;
+    public Cliente(int numIncricao, String nome, String dtNascimento, String sexo, String estaAtivo) {
+        this.numIncricao = numIncricao;
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.sexo = sexo;
@@ -24,7 +36,7 @@ public class Cliente {
     }
 
     //sem id
-    public Cliente(String nome, Date dtNascimento, char sexo, boolean estaAtivo) {
+    public Cliente(String nome, String dtNascimento, String sexo, String estaAtivo) {
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.sexo = sexo;
@@ -43,36 +55,37 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Date getDtNascimento() {
+    public String getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(Date dtNascimento) {
+    public void setDtNascimento(String dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public boolean isEstaAtivo() {
+    public String isEstaAtivo() {
         return estaAtivo;
     }
 
-    public void setEstaAtivo(boolean estaAtivo) {
+    public void setEstaAtivo(String estaAtivo) {
         this.estaAtivo = estaAtivo;
     }
 
-    public int getId() {
-        return id;
+    public int getNumIncricao() {
+        return numIncricao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNumIncricao(int numIncricao) {
+        this.numIncricao = numIncricao;
     }
+
 
 }
