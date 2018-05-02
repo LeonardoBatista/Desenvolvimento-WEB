@@ -58,4 +58,17 @@ public class AplCadastrarTitulo {
         return lista;
     }
 
+    public Titulo get(String id) {
+
+        Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Titulo obj = (Titulo) sessao.get(Titulo.class, Integer.valueOf(id));
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return obj;
+    }  
+    
 }
