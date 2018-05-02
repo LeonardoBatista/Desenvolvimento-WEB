@@ -270,7 +270,7 @@ function Apenas_Numeros(caracter)
                             <div class="form-group">
                                 <div class="form-center">
                                     <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                        <input type="hidden" name="operacao" value="inserir">  
+                                        <input type="hidden" name="operacao" value="inserirSocio">  
                                         <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                                 </div>
                             </div>

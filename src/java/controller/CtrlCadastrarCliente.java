@@ -9,11 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.domain.Socio;
 
-@WebServlet(urlPatterns = {"/CtrlCadastrarCliente"})
+@WebServlet(name = "CtrlCadastrarCliente", urlPatterns = {"/CtrlCadastrarCliente"})
 public class CtrlCadastrarCliente extends HttpServlet {
     
-    AplCadastrarCliente cliente = new AplCadastrarCliente();
+    AplCadastrarCliente aplCliente = new AplCadastrarCliente();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,36 +30,51 @@ public class CtrlCadastrarCliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
-        //Inicia Controladora    
-        String operacao = request.getParameter("operacao");
+            //Inicia Controladora
             
+            String valor = request.getParameter("operacao");
+            //Session s = (Session) request.getAttribute("sessaoBD");
+            
+                 if(valor.equals("inserirDependente")){
+                                           
+                     String nomeDependente = request.getParameter("nomeDependente");
+                     String dtDependente = request.getParameter("dtDependente");
+                     String sexoDependente = request.getParameter("cmbSexo");
+                     String ativoDependente = request.getParameter("ativoDependente");
+                     int varIdSocio = Integer.parseInt(request.getParameter("socio"));
+                     Socio socio = null;
+                    
+                    
+                    /*Criteria c  = s.createCriteria(Socio.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
 
-        switch (operacao) {
-            case "inserirCliente":
-                 //cliente.incluirCliente(operacao);
-                 break;
-            default:
-                break;
-        }
+                    while(i.hasNext()){
+                        Socio so = (Socio) i.next();
+                        int id = so.getNumIncricao();
 
-
-        /*if(operacao.equals("incluirCliente")){
-            int numInscricao = request.getParameter(numInscricao);
-            String nome = request.getParameter("nome");
-            Date dtNascimento = request.getParameter(dtNascimento);
-            char sexo = request.getParameter(sexo);
-            boolean estaAtivo = request.getParameter(estaAtivo);         
-
-            int ret = cliente.incluirCliente(numInscricao, nome, dtNascimento, sexo, estaAtivo);
-
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
-            }
-        }*/
-        //Fecha Controladora
+                        if(id == varIdSocio)
+                            socio = so;
+                    }*/   
+                
+                   aplCliente.incluirDependente(nomeDependente, dtDependente, sexoDependente, ativoDependente, socio);
+            
+                    response.sendRedirect("./administrador/formCadastrarDependente.jsp");
+      
+                }else if (valor.equals("inserirSocio")){                
+                               
+                     String nomeCliente = request.getParameter("nomeCliente");
+                     String dtNascimento = request.getParameter("dtNascimento");
+                     String sexoSocio = request.getParameter("cmbSexoSocio");
+                     String ativoSocio = request.getParameter("ativoSocio");
+                     String cpfSocio = request.getParameter("cpfSocio");
+                     String enderecoSocio = request.getParameter("enderecoSocio");
+                     String telefoneSocio = request.getParameter("telefoneSocio");
+                    
+                    aplCliente.incluirSocio(nomeCliente, dtNascimento, sexoSocio, ativoSocio, cpfSocio, enderecoSocio, telefoneSocio);
+                    
+                    response.sendRedirect("./administrador/formCadastrarSocio.jsp");
+                }
             
         }
     }
