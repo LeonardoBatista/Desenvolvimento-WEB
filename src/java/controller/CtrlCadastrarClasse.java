@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarClasse"})
 public class CtrlCadastrarClasse extends HttpServlet {
-    
+
     AplCadastrarClasse classe = new AplCadastrarClasse();
 
     /**
@@ -27,21 +27,32 @@ public class CtrlCadastrarClasse extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-        //Inicia Controladora    
-            String nome = request.getParameter("nomeClasse");
-                        
-            Float valor = Float.parseFloat(request.getParameter("valorClasse"));            
-            
-            String prazoDevolucao = request.getParameter("devolucao");
-            
-            classe.incluirClasse(nome, valor, prazoDevolucao);
-            
-            response.sendRedirect("./administrador/formCadastrarClasse.jsp");
-            
-            
-            
-            
+
+            //Inicia Controladora 
+            String valor = request.getParameter("operacao");
+
+            if (valor.equals("inserir")) {
+
+                String nome = request.getParameter("nomeClasse");
+
+                Float valorclasse = Float.parseFloat(request.getParameter("valorClasse"));
+
+                String prazoDevolucao = request.getParameter("devolucao");
+
+                classe.incluirClasse(nome, valorclasse, prazoDevolucao);
+
+                response.sendRedirect("./administrador/formCadastrarClasse.jsp");
+
+            } else if (valor.equals("excluir")) {
+
+                int idClasse = Integer.valueOf(request.getParameter("id"));
+                System.out.println("açsknoiasdoiahdoiaoidhaoishdioashdoia");
+                System.out.println(idClasse);
+                classe.excluirClasse(idClasse);
+                response.sendRedirect("./administrador/formCadastrarClasse.jsp");
+
+            }
+
             //response.sendRedirect("administrador/formCadastrarClasse.jsp?valor="+Float.valueOf(valor));
         }
     }
@@ -85,8 +96,4 @@ public class CtrlCadastrarClasse extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
- 
-    
-    
 }

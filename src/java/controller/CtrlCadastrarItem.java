@@ -3,14 +3,12 @@ package controller;
 import model.application.AplCadastrarItem;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.AplCadastrarTitulo;
-import model.domain.Titulo;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarItem"})
 public class CtrlCadastrarItem extends HttpServlet {
@@ -40,9 +38,9 @@ public class CtrlCadastrarItem extends HttpServlet {
             String tipoItem = request.getParameter("tipo");
             
             
-            aplItem.incluirItem(numSerie, dtAquisicao, tipoItem, aplTitulo.get(request.getParameter("cmbTitulo")));
+     //       aplItem.incluirItem(numSerie, dtAquisicao, tipoItem, request.getParameter("cmbTitulo"));
             
-            response.sendRedirect("../administrador/formCadastrarItem.jsp");
+            response.sendRedirect("./administrador/formCadastrarItem.jsp");
 
 
             /*if(operacao.equals("incluirItem")){

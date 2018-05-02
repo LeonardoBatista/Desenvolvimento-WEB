@@ -1,6 +1,5 @@
 package model.application;
 
-import java.io.Serializable;
 import java.util.List;
 import model.domain.Classe;
 import org.hibernate.Criteria;
@@ -60,6 +59,25 @@ public class AplCadastrarClasse {
         sessao.close();
 
         return obj;
+    }
+    
+    public int excluirClasse(int id) {
+        
+        Classe ator = new Classe();
+        ator.setId(id);
+        
+        Session sessao;
+        
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+        
+        sessao.delete(ator);
+        
+        sessao.getTransaction().commit();
+        sessao.close();
+        
+        return 0;
+        
     }
 
 }

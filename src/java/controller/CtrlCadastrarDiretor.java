@@ -28,12 +28,20 @@ public class CtrlCadastrarDiretor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            if (request.getParameter("operacao").equalsIgnoreCase("inserir")) {
+            String valor = request.getParameter("operacao");
+
+            if (valor.equals("inserir")) {
 
                 diretor.incluirDiretor(request.getParameter("nomeDiretor"));
 
                 response.sendRedirect("./administrador/formCadastrarDiretor.jsp");
 
+            } else if (valor.equals("excluir")) {
+
+                int idDiretor = Integer.valueOf(request.getParameter("id"));
+                diretor.excluirDiretor(idDiretor);
+
+                response.sendRedirect("./administrador/formCadastrarDiretor.jsp");
             }
 
         }

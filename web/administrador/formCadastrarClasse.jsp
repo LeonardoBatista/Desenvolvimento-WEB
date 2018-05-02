@@ -226,7 +226,7 @@
                             out.println("</tr>");
 
                             for (int i = 0; i < Classes.size(); i++) {
-
+                                out.println("<form  method='POST'  action='../CtrlCadastrarClasse'");
                                 out.println("<tr>");
                                 out.println("<td>" + Classes.get(i).getNome() + "</td>");
                                 out.println("<td>" + Classes.get(i).getValor() + "</td>");
@@ -238,12 +238,14 @@
                                 out.println("<ul class='dropdown-menu' role='menu' aria-labelledby='menu1'>");
                                 out.println("<li role='presentation'><a role='menuitem' href='#'>");
                                 out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
-                                out.println("<button type='button' class='btn btn-danger btn-xs'>Excluir</button></a>");
+                                out.println("<button type='submit' name='operacao' value='excluir' class='btn btn-danger btn-xs'>Excluir</button>");
+                                out.println("<input type='hidden' name='id' value='" + Classes.get(i).getId() + "'>");
                                 out.println("</li>");
                                 out.println("</ul>");
                                 out.println("</div>");
                                 out.println("</td>");
                                 out.println("</tr>");
+                                out.println("</form>");
 
                             }
 

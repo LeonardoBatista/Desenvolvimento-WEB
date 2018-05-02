@@ -190,7 +190,7 @@
                             out.println("</tr>");
 
                             for (int i = 0; i < Atores.size(); i++) {
-                                out.println("<form  method='POST'  action='../CtrlCadastrarAtor'"); 
+                                out.println("<form  method='POST'  action='../CtrlCadastrarAtor'");
                                 out.println("<tr>");
                                 out.println("<td>" + Atores.get(i).getNome() + "</td>");
                                 out.println("<td>");
@@ -201,7 +201,7 @@
                                 out.println("<li role='presentation'><a role='menuitem' href='#'>");
                                 out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
                                 out.println("<button type='submit' name='operacao' value='excluir' class='btn btn-danger btn-xs'>Excluir</button>");
-                                out.println("<input type='hidden' name='id' value='id'>");
+                                out.println("<input type='hidden' name='id' value='" + Atores.get(i).getId() + "'>");
                                 out.println("</li>");
                                 out.println("</ul>");
                                 out.println("</div>");

@@ -8,91 +8,86 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarAtor {
-
+    
     public int incluirAtor(String nome) {
-
+        
         Ator ator = new Ator(nome);
-
+        
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
-
+        
         sessao.beginTransaction();
-
+        
         sessao.save(ator);
-
+        
         sessao.getTransaction().commit();
         sessao.close();
-
+        
         return 0;
     }
-
+    
     public List listarID(String id[]) {
-
+        
         List lista;
         Session sessao;
-
+        
         sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
         sessao.beginTransaction();
-
+        
         Criteria cons = sessao.createCriteria(Ator.class);
         for (String id1 : id) {
             cons.add(Restrictions.eq("id", Integer.valueOf(id1)));
         }
-
+        
         lista = cons.list();
-
+        
         sessao.getTransaction().commit();
         sessao.close();
         
         System.out.println("saida do banco");
         System.out.println(lista.isEmpty());
-
-        return lista;
-    }
-
-    public List listarTodos() {
-
-        List lista;
-        Session sessao;
-
-        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
-        sessao.beginTransaction();
-
-        Criteria cons = sessao.createCriteria(Ator.class);
-
-        cons.add(Restrictions.like("nome", "%"));
-
-        cons.addOrder(Order.asc("nome"));
-
-        lista = cons.list();
-
-        sessao.getTransaction().commit();
-        sessao.close();
-
+        
         return lista;
     }
     
-    public static int excluirAtor(int id){
-
+    public List listarTodos() {
+        
+        List lista;
+        Session sessao;
+        
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+        
+        Criteria cons = sessao.createCriteria(Ator.class);
+        
+        cons.add(Restrictions.like("nome", "%"));
+        
+        cons.addOrder(Order.asc("nome"));
+        
+        lista = cons.list();
+        
+        sessao.getTransaction().commit();
+        sessao.close();
+        
+        return lista;
+    }
+    
+    public int excluirAtor(int id) {
+        
         Ator ator = new Ator();
         ator.setId(id);
         
+        Session sessao;
         
-        Session sessao = null;
         sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
         
-        try{   
-            sessao.beginTransaction();
-
-            sessao.delete(id);
-
-            sessao.getTransaction().commit();
-            return 1;
-        }catch (Exception e){
-            sessao.getTransaction().rollback();
-            return 0;
-        }finally{
-            sessao.close();
-        }    				
+        sessao.delete(ator);
+        
+        sessao.getTransaction().commit();
+        sessao.close();
+        
+        return 0;
+        
     }
-
+    
 }

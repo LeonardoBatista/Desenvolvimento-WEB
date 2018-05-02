@@ -3,6 +3,8 @@ package model.domain;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+
+
 @Entity
 @PrimaryKeyJoinColumn(name="numInscricao")
 public class Socio extends Cliente {
