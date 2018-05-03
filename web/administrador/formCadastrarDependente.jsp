@@ -5,15 +5,8 @@
 --%>
 
 <%@page import="model.application.AplCadastrarCliente"%>
-<%@page import="java.awt.PageAttributes.MediaType.D"%>
 <%@page import="model.domain.Dependente"%>
-<%@page import="org.hibernate.Criteria"%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="model.domain.Socio"%>
-<%@page import="org.hibernate.Session"%>
-<%@page import="org.hibernate.SessionFactory"%>
-<%@page import="org.hibernate.SessionFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,19 +202,19 @@
                                   </select>	                    					   
                               </div>
                             </div>           
-                            <!-- <div class="form-group">
+                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="socio">Socio <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="socio" name="socio" class="form-control col-md-7 col-xs-12">
                                         <%
-                                            List<Socio> Socios = new AplCadastrarCliente().listarSocio();
+                                          /*  List<Socio> Socios = new AplCadastrarCliente().listarSocio();
                                             for (int i = 0; i < Socios.size(); i++) {
                                                 out.println("<option value =" + Socios.get(i).getNumIncricao() + ">" + Socios.get(i).getNome());
                                             }
-                                        %>        
+                                        */%>        
                                     </select>
                                 </div>
-                            </div> -->                      
+                            </div>                    
                                           
                             <div class="form-group">
                                 <div class="form-center">
@@ -283,8 +276,8 @@
                             }
 
                             out.println("</table>");
-                            out.println("</div>");
-                        %>                                                  
+                         out.println("</div>");
+                           %>                                                  
                     </div>
 
                 </div>

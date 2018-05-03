@@ -196,19 +196,19 @@
                                         <input class="form-control" id="tipoItem" name="tipo" maxlength="50" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbTitulo">Titulo <span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="cmbTitulo" name="cmbTitulo" class="form-control col-md-7 col-xs-12">
-                                        <%
-                                            List<Titulo> Titulos = new AplCadastrarTitulo().listar();
-                                            for (int i = 0; i < Titulos.size(); i++) {
-                                                out.println("<option value =" +Titulos.get(i).getId() + ">" + Titulos.get(i).getNome());
-                                            }
-                                        %>        
-                                    </select>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbTitulo">Titulo <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="cmbTitulo" name="cmbTitulo" class="form-control col-md-7 col-xs-12">
+                                            <%
+                                                List<Titulo> Titulos = new AplCadastrarTitulo().listar();
+                                                for (int i = 0; i < Titulos.size(); i++) {
+                                                    out.println("<option value =" + Titulos.get(i).getId() + ">" + Titulos.get(i).getNome());
+                                                }
+                                            %>        
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-center">
@@ -242,7 +242,7 @@
                             out.println("</tr>");
 
                             for (int i = 0; i < Itens.size(); i++) {
-
+                                out.println("<form  method='POST'  action='../CtrlCadastrarItem'");
                                 out.println("<tr>");
                                 out.println("<td>" + Itens.get(i).getNumSerie() + "</td>");
                                 out.println("<td>" + Itens.get(i).getDtAquisicao() + "</td>");
@@ -255,12 +255,14 @@
                                 out.println("<ul class='dropdown-menu' role='menu' aria-labelledby='menu1'>");
                                 out.println("<li role='presentation'><a role='menuitem' href='#'>");
                                 out.println("<button type='button' class='btn btn-warning btn-xs'>Alterar</button> ");
-                                out.println("<button type='button' class='btn btn-danger btn-xs'>Excluir</button></a>");
+                                out.println("<button type='submit' name='operacao' value='excluir' class='btn btn-danger btn-xs'>Excluir</button>");
+                                out.println("<input type='hidden' name='id' value='" + Itens.get(i).getId() + "'>");
                                 out.println("</li>");
                                 out.println("</ul>");
                                 out.println("</div>");
                                 out.println("</td>");
                                 out.println("</tr>");
+                                out.println("</form>");
 
                             }
 

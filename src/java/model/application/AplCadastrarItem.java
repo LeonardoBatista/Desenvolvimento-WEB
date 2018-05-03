@@ -1,6 +1,5 @@
 package model.application;
 
-import java.util.Date;
 import java.util.List;
 import model.domain.Item;
 import model.domain.Titulo;
@@ -48,6 +47,25 @@ public class AplCadastrarItem {
         sessao.close();
 
         return lista;
+    }
+    
+        public int excluirItem(int id) {
+        
+        Item item = new Item();
+        item.setId(id);
+        
+        Session sessao;
+        
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+        
+        sessao.delete(item);
+        
+        sessao.getTransaction().commit();
+        sessao.close();
+        
+        return 0;
+        
     }
 
 }

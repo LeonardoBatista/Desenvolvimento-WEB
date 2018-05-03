@@ -8,13 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.application.AplCadastrarTitulo;
+import model.domain.Titulo;
 
 @WebServlet(urlPatterns = {"/CtrlCadastrarItem"})
 public class CtrlCadastrarItem extends HttpServlet {
 
     AplCadastrarItem aplItem = new AplCadastrarItem();
-    AplCadastrarTitulo aplTitulo = new AplCadastrarTitulo();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,34 +30,31 @@ public class CtrlCadastrarItem extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             //Inicia Controladora    
 
-            String numSerie = request.getParameter("numeroSerieItem");
+            String valor = request.getParameter("operacao");
 
-            String dtAquisicao = request.getParameter("dtAquisicao");
+            if (valor.equals("inserir")) {
 
-            String tipoItem = request.getParameter("tipo");
-            
-            
-     //       aplItem.incluirItem(numSerie, dtAquisicao, tipoItem, request.getParameter("cmbTitulo"));
-            
-            response.sendRedirect("./administrador/formCadastrarItem.jsp");
+                String numSerie = request.getParameter("numeroSerieItem");
 
+                String dtAquisicao = request.getParameter("dtAquisicao");
 
-            /*if(operacao.equals("incluirItem")){
+                String tipoItem = request.getParameter("tipo");
 
-            String numSerie = request.getParameter("numSerie");
-            Date dtAquisicao = request.getParameter(dtAquisicao);
-            String tipoItem = request.getParameter("tipoItem");
+                Titulo titulo = new Titulo();
 
-            int ret = item.incluirItem(numSerie, dtAquisicao, tipoItem);
+                titulo.setId(Integer.valueOf(request.getParameter("cmbTitulo")));
 
-            switch(ret){
-                case 0:
-                    response.sendRedirect("../Erro.html");
-                case 1:
-                case 2:
+                aplItem.incluirItem(numSerie, dtAquisicao, tipoItem, titulo);
+
+                response.sendRedirect("./administrador/formCadastrarItem.jsp");
+                
+            } else if (valor.equals("excluir")) {
+
+                int idItem = Integer.valueOf(request.getParameter("id"));
+                aplItem.excluirItem(idItem);
+                response.sendRedirect("./administrador/formCadastrarItem.jsp");
             }
-        }*/
-            //Fecha Controladora
+
         }
     }
 

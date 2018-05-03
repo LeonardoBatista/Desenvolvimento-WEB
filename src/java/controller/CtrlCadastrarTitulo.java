@@ -3,7 +3,6 @@ package controller;
 import model.application.AplCadastrarTitulo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,16 +34,28 @@ public class CtrlCadastrarTitulo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            //Inicia Controladora    
-            String nome = request.getParameter("nomeTitulo");
-            String ano = request.getParameter("anoTitulo");
-            String sinopse = request.getParameter("nomeSinopse");
-            String categoria = request.getParameter("cmbCategoria");
-            
-            aplTitulo.incluirTitulo(nome, aplAtor.listarID(request.getParameterValues("cmbAtor")), aplDiretor.get(request.getParameter("cmbDiretor")),
-                    ano, sinopse, categoria, aplClasse.get(request.getParameter("cmbClasse")));
-            
-            response.sendRedirect("./administrador/formCadastrarTitulo.jsp");
+            //Inicia Controladora   
+            String valor = request.getParameter("operacao");
+
+            if (valor.equals("inserir")) {
+                String nome = request.getParameter("nomeTitulo");
+                String ano = request.getParameter("anoTitulo");
+                String sinopse = request.getParameter("nomeSinopse");
+                String categoria = request.getParameter("cmbCategoria");
+                String[] idAtores = request.getParameterValues("cmbAtor");
+
+                aplTitulo.incluirTitulo(nome, idAtores, aplDiretor.get(request.getParameter("cmbDiretor")),
+                        ano, sinopse, categoria, aplClasse.get(request.getParameter("cmbClasse")));
+
+                response.sendRedirect("./administrador/formCadastrarTitulo.jsp");
+                
+            } else if (valor.equals("excluir")) {
+
+                int idTitulo = Integer.valueOf(request.getParameter("id"));
+                aplTitulo.excluirTitulo(idTitulo);
+                response.sendRedirect("./administrador/formCadastrarTitulo.jsp");
+
+            }
 
         }
     }
