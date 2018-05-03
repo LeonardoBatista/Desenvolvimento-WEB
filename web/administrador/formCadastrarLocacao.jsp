@@ -4,6 +4,11 @@
     Author     : Wellington
 --%>
 
+<%@page import="model.application.AplCadastrarCliente"%>
+<%@page import="model.domain.Cliente"%>
+<%@page import="model.application.AplCadastrarItem"%>
+<%@page import="model.domain.Item"%>
+<%@page import="model.application.AplCadastrarLocacao"%>
 <%@page import="model.domain.Locacao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -189,54 +194,40 @@
                             <div class="form-row">
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <label for="valorLocacao">Valor <span class="required">*</span></label>
-                                    <input class="form-control" id="valorLocacao" maxlength="6" type="text" aria-describedby="nameHelp">
+                                    <input class="form-control" id="valorLocacao" name="valorLocacao" maxlength="6" type="text" aria-describedby="nameHelp">
                                 </div>
                             </div>
                         </div>
-                      <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-2 control-label">Nome do Item</label>
-                          <div class="col-sm-10">
-                              <select name="item" class="form-control">
-                                  <%
-                                      Session s = (Session) request.getAttribute("sessaoBD");
-                                      Criteria c  = s.createCriteria(Item.class);
-                                      c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-                                      List l = c.list();
-                                      Iterator i = l.iterator();
-
-                                      while(i.hasNext()){
-                                          Item t1 = (Item) i.next();
-                                          int id = t1.getId();
-                                          out.println("<option value='"+ id +"' >" +t1+"</option>");
-                                      }         
-
-                                  %>
-                              </select>                
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-2 control-label">Nome do Cliente</label>
-                          <div class="col-sm-10">
-                              <select name="cliente" class="form-control">
-                                  <%                           
-                                      c  = s.createCriteria(Cliente.class);
-                                      c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-                                      l = c.list();
-                                      i = l.iterator();
-
-                                      while(i.hasNext()){
-                                          Cliente c1 = (Cliente) i.next();
-                                          int id = c1.getNumIncricao();
-                                          out.println("<option value='"+ id +"' >" +c1+"</option>");
-                                      }                          
-                                  %>
-                              </select>                
-                        </div>
-                      </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="item">Item <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="item" name="item" class="form-control col-md-7 col-xs-12">
+                                    <%
+                                        List<Item> Itens = new AplCadastrarItem().listar();
+                                        for (int i = 0; i < Itens.size(); i++) {
+                                            out.println("<option value =" + Itens.get(i).getId() + ">" + Itens.get(i).getNumSerie());
+                                        }
+                                    %>        
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cliente">Cliente <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="cliente" name="cliente" class="form-control col-md-7 col-xs-12">
+                                    <%
+                                        List<Cliente> Clientes = new AplCadastrarCliente().listarCliente();
+                                        for (int i = 0; i < Itens.size(); i++) {
+                                            out.println("<option value =" + Clientes.get(i).getNumIncricao() + ">" + Clientes.get(i).getNumIncricao());
+                                        }
+                                    %>        
+                                </select>
+                            </div>
+                        </div>     
                         <div class="form-group">
                             <div class="form-center">
                                 <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                    <input type="hidden" name="operacao" value="inserir">  
+                                    <input type="hidden" name="operacao" value="inserirLocacao">  
                                     <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                             </div>
                         </div>
@@ -254,8 +245,8 @@
                     </div>                    
                           
                         <%
-                            List<Locacao> Locacoes = new AplCadastrarLocacao().listarTodos();
-
+                            List <Locacao> Locacoes = new AplCadastrarLocacao().listar();
+                            
                             out.println("<div class='table-responsive'>");
                             out.println("<table class='table table-bordered table-striped table-hover'>");
                             out.println("<tr>");

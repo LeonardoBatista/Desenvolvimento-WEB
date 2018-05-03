@@ -4,6 +4,7 @@
     Author     : Wellington
 --%>
 
+<%@page import="model.application.AplCadastrarCliente"%>
 <%@page import="java.awt.PageAttributes.MediaType.D"%>
 <%@page import="model.domain.Dependente"%>
 <%@page import="org.hibernate.Criteria"%>
@@ -173,7 +174,7 @@
                 <div class="container">
                     <div class="card-header">Gerenciar Dependente</div>
                     <div class="card-body">
-                        <form name="teste"  method="POST"  action="../CtrlCadastrarDependente">
+                        <form name="teste"  method="POST"  action="../CtrlCadastrarCliente">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
@@ -202,37 +203,30 @@
                           <div class="form-group">
                               <label for="inputAtivo" class="col-sm-2 control-label">Ativo/Desativo</label>
                               <div class="col-sm-10">
-                                  <select name="ativo" class="form-control">
+                                  <select name="ativoDependente" class="form-control">
                                       <option value="1">Sim</option>
                                       <option value="0">Não</option>
                                   </select>	                    					   
                               </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Sócio</label>
-                                <div class="col-sm-10">
-                                    <select name="socio" class="form-control">
-                                          <%
-                                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                                              Session s = sf.openSession();
-                                              Criteria c  = s.createCriteria(Socio.class);
-                                              List l = c.list();
-                                              Iterator i = l.iterator();
-
-                                              while(i.hasNext()){
-                                                  Socio so = (Socio) i.next();
-                                                  int id = so.getNumIncricao();
-                                                  out.println("<option value='"+ id +"' >" +so+"</option>");
-                                              }      
-                                              s.close();
-                                          %>
-                                      </select> 
+                            </div>           
+                            <!-- <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="socio">Socio <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="socio" name="socio" class="form-control col-md-7 col-xs-12">
+                                        <%
+                                            List<Socio> Socios = new AplCadastrarCliente().listarSocio();
+                                            for (int i = 0; i < Socios.size(); i++) {
+                                                out.println("<option value =" + Socios.get(i).getNumIncricao() + ">" + Socios.get(i).getNome());
+                                            }
+                                        %>        
+                                    </select>
                                 </div>
-                              </div> 
+                            </div> -->                      
+                                          
                             <div class="form-group">
                                 <div class="form-center">
                                     <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                        <input type="hidden" name="operacao" value="inserir">  
+                                        <input type="hidden" name="operacao" value="inserirDependente">  
                                         <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                                 </div>
                             </div>
@@ -250,7 +244,7 @@
                         </div>
                         
                         <%
-                            List<Dependente> Dependentes = new AplCadastrarDependente().listarTodos();
+                            List<Dependente> Dependentes = new AplCadastrarCliente().listarDependente();
 
                             out.println("<div class='table-responsive'>");
                             out.println("<table class='table table-bordered table-striped table-hover'>");

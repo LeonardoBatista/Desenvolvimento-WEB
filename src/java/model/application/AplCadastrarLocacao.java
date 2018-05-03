@@ -1,9 +1,12 @@
 package model.application;
 
+import java.util.List;
 import model.domain.Cliente;
 import model.domain.Item;
 import model.domain.Locacao;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarLocacao {
 
@@ -25,6 +28,26 @@ public class AplCadastrarLocacao {
 
         return 0;
 
+    }
+    
+    public List listar() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Locacao.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+        
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
     }
 
 }

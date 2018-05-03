@@ -4,6 +4,7 @@
     Author     : Wellington
 --%>
 
+<%@page import="model.application.AplCadastrarCliente"%>
 <%@page import="model.domain.Socio"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -207,12 +208,12 @@ function Apenas_Numeros(caracter)
                     <div class="card card-register mx-auto mt-5">
                         <div class="card-header">Gerenciar Cliente</div>
                         <div class="card-body">
-                        <form action="../CtrCadastrarCliente">
+                        <form name="teste"  method="POST" action="../CtrCadastrarCliente">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <label for="nomeCliente">Nome <span class="required">*</span></label>
-                                        <input class="form-control" id="nomeCliente" nome="nomeCliente" maxlength="50" type="text" aria-describedby="nameHelp">
+                                        <input class="form-control" id="nomeSocio" nome="nomeSocio" maxlength="50" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>
@@ -225,9 +226,9 @@ function Apenas_Numeros(caracter)
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbSexoCliente">Sexo <span class="required">*</span></label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cmbSexoSocio">Sexo <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="cmbUFLocalidade" name="cmbSexoCliente" class="form-control col-md-3 col-xs-8">	 
+                                    <select id="cmbUFLocalidade" name="cmbSexoSocio" class="form-control col-md-3 col-xs-8">	 
                                         <option value="M" selected>M</option>	 
                                         <option value="F">F</option>	 
                                     </select>
@@ -236,7 +237,7 @@ function Apenas_Numeros(caracter)
                             <div class="form-group">
                                 <label for="inputAtivo" class="col-sm-2 control-label">Ativo/Desativo</label>
                                 <div class="col-sm-10">
-                                    <select name="ativo" class="form-control">
+                                    <select name="ativoSocio" class="form-control">
                                         <option value="1">Sim</option>
                                         <option value="0">Não</option>
                                     </select>	                    					   
@@ -245,31 +246,31 @@ function Apenas_Numeros(caracter)
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <label for="cpfCliente">Cpf <span class="required">*</span></label>
-                                        <input class="form-control" id="cpfCliente" nome="cpfCliente" maxlength="11" type="text" aria-describedby="nameHelp">
+                                        <label for="cpfSocio">Cpf <span class="required">*</span></label>
+                                        <input class="form-control" id="cpfSocio" nome="cpfSocio" maxlength="11" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-row">
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <label for="enderecoCliente">Endereço <span class="required">*</span></label>
-                                            <textArea class="form-control" id="enderecoCliente" nome="enderecoCliente" rows="2" maxlength="255"  aria-describedby="nameHelp"></textarea>
+                                            <label for="enderecoSocio">Endereço <span class="required">*</span></label>
+                                            <textArea class="form-control" id="enderecoSocio" nome="enderecoSocio" rows="2" maxlength="255"  aria-describedby="nameHelp"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <label for="telefoneCliente">Telefone <span class="required">*</span></label>              
-                                        <input class="form-control" id="telefoneCliente" nome="telefoneCliente" maxlength="13" size="13"  onKeyPress="fone(this, document.form.data)" type="text" aria-describedby="nameHelp">
+                                        <label for="telefoneSocio">Telefone <span class="required">*</span></label>              
+                                        <input class="form-control" id="telefoneSocio" nome="telefoneSocio" maxlength="13" size="13"  onKeyPress="fone(this, document.form.data)" type="text" aria-describedby="nameHelp">
                                     </div>
                                 </div>
                             </div>      
                             <div class="form-group">
                                 <div class="form-center">
                                     <center><button id="btCadastrar" type="submit" class="btn btn-primary">Cadastrar</button> 
-                                        <input type="hidden" name="operacao" value="inserir">  
+                                        <input type="hidden" name="operacao" value="inserirSocio">  
                                         <button id="btCancelar" type="reset" class="btn btn-danger">Cancelar</button></center> 
                                 </div>
                             </div>
@@ -287,7 +288,7 @@ function Apenas_Numeros(caracter)
                     </div>                            
                           
                         <%
-                            List<Socio> Socios = new AplCadastrarSocio().listarTodos();
+                            List<Socio> Socios = new AplCadastrarCliente().listarSocio();
 
                             out.println("<div class='table-responsive'>");
                             out.println("<table class='table table-bordered table-striped table-hover'>");

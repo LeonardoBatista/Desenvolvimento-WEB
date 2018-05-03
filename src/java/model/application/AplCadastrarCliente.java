@@ -1,10 +1,13 @@
 package model.application;
 
 import java.util.Date;
+import java.util.List;
 import model.domain.Cliente;
 import model.domain.Dependente;
 import model.domain.Socio;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarCliente {
    
@@ -40,4 +43,64 @@ public class AplCadastrarCliente {
         return 0;
     } 
      
+    public List listarDependente() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Dependente.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+        
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
+    }
+     
+    public List listarSocio() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Socio.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+        
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
+    }
+    
+    public List listarCliente() {
+
+        List lista;
+        Session sessao;
+
+        sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
+        sessao.beginTransaction();
+
+        Criteria cons = sessao.createCriteria(Cliente.class);
+
+        cons.add(Restrictions.like("nome", "%"));
+        
+        lista = cons.list();
+
+        sessao.getTransaction().commit();
+        sessao.close();
+
+        return lista;
+    } 
+    
 }
