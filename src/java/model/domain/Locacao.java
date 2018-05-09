@@ -2,13 +2,19 @@ package model.domain;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 
@@ -26,39 +32,43 @@ public class Locacao implements Serializable {
     private int valorCobrado;
     private int multaCobrada;
 
-    @ManyToOne
-    //@JoinColumn(name="idCliente")
-    private Cliente cliente;
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "numIncricao", nullable = false)
+    private Cliente cliente;//Add OnDelete e OnCascade
 
-    @ManyToOne
-    //@JoinColumn(name="idItem")
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @Cascade(CascadeType.SAVE_UPDATE)   
     private Item item;
 
     //com id
-	public Locacao(int idLocacao, String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
-	
-		this.dtLocacao = dtLocacao;
-		this.dtDevolucaoPrevista = dtDevolucaoPrevista;
-		this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
-		this.valorCobrado = valorCobrado;
-		this.multaCobrada = multaCobrada;
-		this.item = item;
-                this.cliente = cliente;
-	}
+    public Locacao(int idLocacao, String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+                    int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
+
+            this.dtLocacao = dtLocacao;
+            this.dtDevolucaoPrevista = dtDevolucaoPrevista;
+            this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
+            this.valorCobrado = valorCobrado;
+            this.multaCobrada = multaCobrada;
+            this.item = item;
+            this.cliente = cliente;
+    }
 
     //sem id
-	public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
-	
-		this.dtLocacao = dtLocacao;
-		this.dtDevolucaoPrevista = dtDevolucaoPrevista;
-		this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
-		this.valorCobrado = valorCobrado;
-		this.multaCobrada = multaCobrada;
-		this.item = item;
-                this.cliente = cliente;
-	}
+    public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
+                    int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
+
+            this.dtLocacao = dtLocacao;
+            this.dtDevolucaoPrevista = dtDevolucaoPrevista;
+            this.dtDevolucaoEfetiva = dtDevolucaoEfetiva;
+            this.valorCobrado = valorCobrado;
+            this.multaCobrada = multaCobrada;
+            this.item = item;
+            this.cliente = cliente;
+    }
 
     //construtor vazio
     public Locacao() {

@@ -1,5 +1,6 @@
 package model.domain;
 
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -17,16 +18,16 @@ public class Socio extends Cliente {
 
 
     //com id
-    public Socio(int numInscricao, String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone) {
-        super(nome, dtNascimento, sexo, estahAtivo);
+    public Socio(int numInscricao, String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone, Collection <Locacao> locacoes) {
+        super(nome, dtNascimento, sexo, estahAtivo, locacoes);
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
     }
 
     //sem id
-    public Socio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone) {
-        super(nome, dtNascimento, sexo, estahAtivo);
+    public Socio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone, Collection <Locacao> locacoes) {
+        super(nome, dtNascimento, sexo, estahAtivo, locacoes);
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
