@@ -1,9 +1,11 @@
 package model.application;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import model.domain.Cliente;
 import model.domain.Dependente;
+import model.domain.Locacao;
 import model.domain.Socio;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,9 +13,9 @@ import org.hibernate.criterion.Restrictions;
 
 public class AplCadastrarCliente {
    
-    public int incluirDependente(String nome, String dtNascimento, String sexo, String estaAtivo, Socio socio){
+    public int incluirDependente(String nome, String dtNascimento, String sexo, String estaAtivo, Socio socio, Collection <Locacao> locacoes){
         
-        Dependente dependente = new Dependente(nome, dtNascimento, sexo, estaAtivo, socio);
+        Dependente dependente = new Dependente(nome, dtNascimento, sexo, estaAtivo, socio, locacoes);
         
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
@@ -27,9 +29,9 @@ public class AplCadastrarCliente {
         return 0;
     } 
     
-    public int incluirSocio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone){
+    public int incluirSocio(String nome, String dtNascimento, String sexo, String estahAtivo, String cpf, String endereco, String telefone, Collection <Locacao> locacoes){
         
-        Socio socio = new Socio(nome, dtNascimento, sexo, estahAtivo, cpf, endereco, telefone);
+        Socio socio = new Socio(nome, dtNascimento, sexo, estahAtivo, cpf, endereco, telefone, locacoes);
         
         Session sessao = conexao.NewHibernateUtil.getSessionFactory().openSession();
 
